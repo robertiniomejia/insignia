@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS flexbox</title>
+</head>
+<body>
+    <!-- RESUMEN:
+    3.flex-direction 
+    flex-direction: row (default)
+    flex-direction: row-reverse; (horizontal)
+    flex-direction: column;
+    flex-direction: column-reverse; (vertical)
+    ---------------
+
+    7.justify-content (como alinear y espaciar los elementos flexibles)
+    Hay varias opciones para espaciar los elementos flexibles a lo largo de la línea que representa el eje principal. Uno de los más utilizados es justify-content: center;, el cual alinea hacia el centro todos los elementos flexibles dentro del contenedor flexible. Otras opciones incluyen:
+
+    flex-start: alinea los elementos con el inicio del contenedor flex. Para una fila, esto empuja los elementos a la izquierda del contenedor. Para una columna, esto empuja los elementos a la parte superior del contenedor. Esta es la alineación predeterminada si no se especifica ningún tipo de justify-content.
+    flex-end: alinea los elementos con el final del contenedor flex. Para una fila, esto empuja los elementos a la derecha del contenedor. Para una columna, esto empuja los elementos a la parte inferior del contenedor.
+    space-between: alinea los elementos en el centro del eje principal, con un espacio extra entre los elementos. Los primeros y últimos elementos son empujados hasta el borde del contenedor flexible. Por ejemplo, en una fila el primer elemento está en el lado izquierdo del contenedor, el último elemento está en el lado derecho del contenedor, luego el espacio restante se distribuye uniformemente entre los demás elementos.
+    space-around: similar a space-between pero los primeros y últimos elementos no están fijados en los bordes del contenedor, el espacio se distribuye alrededor de todos los elementos con la mitad de un espacio en ambos extremos del contenedor flexible.
+    space-evenly: Distribuye el espacio de manera uniforme entre los elementos flexibles con un espacio completo en ambos extremos del contenedor flexible
+    ---------------
+
+    9.align-items (alinea elementos flexiblres a lo largo del eje transversal)
+    Para una fila, le indica al CSS como empujar los elementos en toda la fila hacia arriba o hacia abajo dentro del contenedor. Y para una columna, como empujar todos los elementos hacia la izquierda o hacia la derecha dentro del contenedor.
+
+    Los diferentes valores disponibles para align-items incluyen:
+
+    flex-start: alinea los elementos con el inicio del contenedor flexible. Para las filas, esto alinea los elementos a la parte superior del contenedor. Para las columnas, esto alinea los elementos a la parte izquierda del contenedor.
+    flex-end: alinea los elementos con el final del contenedor flexible. Para las filas, esto alinea los elementos a la parte inferior del contenedor. Para las columnas, esto alinea los elementos a la parte derecha del contenedor.
+    center: alinea los elementos hacia el centro. Para las filas, esto alinea los elementos verticalmente (igual espacio por encima y por debajo de los elementos). Para columnas, esto las alinea horizontalmente (igual espacio a la izquierda y a la derecha de los elementos).
+    stretch: estira los elementos para llenar el contenedor flexible. Por ejemplo, los elementos de filas son estirados para llenar el contenedor flexible de arriba hacia abajo. Este es el valor predeterminado si no se especifica ningún tipo de align-items.
+    baseline: alinea los elementos con sus líneas base. Una línea base es un concepto de texto, piensa en ella como la línea en la que se sitúan las letras.
+    ---------------
+
+    11.flex-wrap (dividir un elemento flexible en varias filas o columnas)
+    flex-wrap le indica al CSS que envuelva los elementos. Esto significa que los elementos extra se mueven hacia una nueva fila o columna.
+    CSS también tiene opciones para la dirección de la envoltura:
+
+    nowrap: esta es la configuración predeterminada, y no envuelve elementos.
+    wrap: envuelve elementos en múltiples líneas de arriba a abajo si están en filas y de izquierda a derecha si están en columnas.
+    wrap-reverse: envuelve elementos en múltiples líneas de abajo hacia arriba si están en filas y de derecha a izquierda si están en columnas.
+    ---------------
+    
+    12.flex-shrink (contrae el elemento flex dentro del contenedor)
+    Cuando se usa, permite que un elemento se contraiga si el contenedor flex es demasiado pequeño. Los elementos se reducen cuando el ancho del contenedor principal es menor que el ancho combinado de todos los elementos flex dentro del él.
+
+    La propiedad flex-shrink toma números como valores. Cuando mayor sea el número, más se reducirá en comparación con los otros elementos en el contenedor. Por ejemplo, si un elemento tiene un flex-shrink con valor de 1 y el otro tiene un flex-shrink con valor de 3, el que tiene el valor de 3 se reducirá tres veces más que el otro.
+    ---------------
+    13.flex-grow (expande los elementos dentro del contenedor)
+    La propiedad flex-grow controla el tamaño de los elementos cuando el contenedor primario se expande.
+
+    Utilizando un ejemplo similar al del último desafío, si un elemento tiene un flex-grow con valor de 1 y el otro tiene un flex-grow con valor de 3, el que tiene el valor de 3 crecerá tres veces más que el otro. 
+    ---------------
+    14.flex basis (establece el tamaño inicial del elemento)
+    La propiedad flex-basis especifica el tamaño inicial del elemento antes de que CSS haga ajustes con flex-shrink o flex-grow.
+
+    Las unidades usadas por la propiedad flex-basis son las mismas que otras propiedades de tamaño (px, em, %, etc.). El valor auto dimensiona los elementos basándose en el contenido. 
+    ---------------
+    15.flex (propiedad abreviada 3 en 1)
+    Las propiedades flex-grow, flex-shrink, y flex-basis pueden establecerse utilizando la propiedad flex.
+
+    Por ejemplo, flex: 1 0 10px; establecerá las propiedades del elemento en flex-grow: 1;, flex-shrink: 0;, y flex-basis: 10px;.
+
+    La configuración predeterminada de la propiedad es flex: 0 1 auto;.
+    ----------------
+    16.order (muestra el orden en que aparece los elementos flexibles)
+    Por defecto, los elementos aparecerán en el mismo orden que vienen en el HTML de origen. La propiedad toma números como valores, y se pueden usar números negativos.
+    ---------------
+    17.align-self (alineación personalizada de un elemento flexible)
+    Esta propiedad te permite ajustar la alineación de cada elemento individualmente, en lugar de ajustarlos todos a la vez. Esto es útil ya que otras técnicas comunes de ajuste usan las propiedades CSS float, clear, y vertical-align, las cuales no funcionan en elementos flexibles.
+
+    align-self acepta los mismos valores que align-items y reemplazará cualquier valor establecido por la propiedad align-items. 
+    ---------------  
+    -->
+    <!-- 1.UTILIZA DISPLAY: FLEX PARA POSICIONAR DOS CAJAS 
+    <style>
+        #box-container {
+          height: 500px;
+          display: flex;
+        }
+      
+        #box-1 {
+          background-color: dodgerblue;
+          width: 50%;
+          height: 50%;
+        }
+      
+        #box-2 {
+          background-color: orangered;
+          width: 50%;
+          height: 50%;
+        }
+      </style>
+      <div id="box-container">
+        <div id="box-1"></div>
+        <div id="box-2"></div>
+      </div> -->
+
+      <!-- 2.AGREGA SUPERPODERES FLEX AL TWEET INCRUSTADO 
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+        }
+        header {
+          display: flex;
+        }
+        header .profile-thumbnail {
+          width: 50px;
+          height: 50px;
+          border-radius: 4px;
+        }
+        header .profile-name {
+          display: flex;
+          margin-left: 10px;
+        }
+        header .follow-btn {
+          display: flex;
+          margin: 0 0 0 auto;
+        }
+        header .follow-btn button {
+          border: 0;
+          border-radius: 3px;
+          padding: 5px;
+        }
+        header h3, header h4 {
+          display: flex;
+          margin: 0;
+        }
+        #inner p {
+          margin-bottom: 10px;
+          font-size: 20px;
+        }
+        #inner hr {
+          margin: 20px 0;
+          border-style: solid;
+          opacity: 0.1;
+        }
+        footer {
+          display: flex;
+        }
+        footer .stats {
+          display: flex;
+          font-size: 15px;
+        }
+        footer .stats strong {
+          font-size: 18px;
+        }
+        footer .stats .likes {
+          margin-left: 10px;
+        }
+        footer .cta {
+          margin-left: auto;
+        }
+        footer .cta button {
+          border: 0;
+          background: transparent;
+        }
+      </style>
+      <header>
+        <img src="https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg" alt="Quincy Larson's profile picture" class="profile-thumbnail">
+        <div class="profile-name">
+          <h3>Quincy Larson</h3>
+          <h4>@ossia</h4>
+        </div>
+        <div class="follow-btn">
+          <button>Follow</button>
+        </div>
+      </header>
+      <div id="inner">
+        <p>I meet so many people who are in search of that one trick that will help them work smart. Even if you work smart, you still have to work hard.</p>
+        <span class="date">1:32 PM - 12 Jan 2018</span>
+        <hr>
+      </div>
+      <footer>
+        <div class="stats">
+          <div class="Retweets">
+            <strong>107</strong> Retweets
+          </div>
+          <div class="likes">
+            <strong>431</strong> Likes
+          </div>
+        </div>
+        <div class="cta">
+          <button class="share-btn">Share</button>
+          <button class="retweet-btn">Retweet</button>
+          <button class="like-btn">Like</button>
+        </div>
+      </footer> -->
+
+      <!-- 3.UTILIZA LA PROPIEDAD FLEX-DIRECTION PARA HACER UNA FILA 
+      <style>
+        #box-container {
+          display: flex;
+          height: 500px;
+          display: flex;
+          flex-direction: row-reverse;
+        }
+        #box-1 {
+          background-color: dodgerblue;
+          width: 50%;
+          height: 50%;
+        }
+      
+        #box-2 {
+          background-color: orangered;
+          width: 50%;
+          height: 50%;
+        }
+      </style>
+      
+      <div id="box-container">
+        <div id="box-1"></div>
+        <div id="box-2"></div>
+      </div> -->
+
+      <!-- 4.APLICA LA PROPIEDAD FLEX-DIRECTION PARA CREAR FILAS EN EL TWEET INSERTADO 
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+        }
+        header {
+          display: flex;
+          flex-direction: row;
+        }
+        header .profile-thumbnail {
+          width: 50px;
+          height: 50px;
+          border-radius: 4px;
+        }
+        header .profile-name {
+          display: flex;
+          margin-left: 10px;
+        }
+        header .follow-btn {
+          display: flex;
+          margin: 0 0 0 auto;
+        }
+        header .follow-btn button {
+          border: 0;
+          border-radius: 3px;
+          padding: 5px;
+        }
+        header h3, header h4 {
+          display: flex;
+          margin: 0;
+        }
+        #inner p {
+          margin-bottom: 10px;
+          font-size: 20px;
+        }
+        #inner hr {
+          margin: 20px 0;
+          border-style: solid;
+          opacity: 0.1;
+        }
+        footer {
+          display: flex;
+          flex-direction: row;
+        }
+        footer .stats {
+          display: flex;
+          font-size: 15px;
+        }
+        footer .stats strong {
+          font-size: 18px;
+        }
+        footer .stats .likes {
+          margin-left: 10px;
+        }
+        footer .cta {
+          margin-left: auto;
+        }
+        footer .cta button {
+          border: 0;
+          background: transparent;
+        }
+      </style>
+      <header>
+        <img src="https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg" alt="Quincy Larson's profile picture" class="profile-thumbnail">
+        <div class="profile-name">
+          <h3>Quincy Larson</h3>
+          <h4>@ossia</h4>
+        </div>
+        <div class="follow-btn">
+          <button>Follow</button>
+        </div>
+      </header>
+      <div id="inner">
+        <p>I meet so many people who are in search of that one trick that will help them work smart. Even if you work smart, you still have to work hard.</p>
+        <span class="date">1:32 PM - 12 Jan 2018</span>
+        <hr>
+      </div>
+      <footer>
+        <div class="stats">
+          <div class="Retweets">
+            <strong>107</strong> Retweets
+          </div>
+          <div class="likes">
+            <strong>431</strong> Likes
+          </div>
+        </div>
+        <div class="cta">
+          <button class="share-btn">Share</button>
+          <button class="retweet-btn">Retweet</button>
+          <button class="like-btn">Like</button>
+        </div>
+      </footer> -->
+
+      <!-- 5.UTILIZA LA PROPIEDAD FLEX-DIRECTION PARA HACER UNA COLUMNA 
+      <style>
+        #box-container {
+          display: flex;
+          height: 500px;
+          flex-direction: column;
+        }
+        #box-1 {
+          background-color: dodgerblue;
+          width: 50%;
+          height: 50%;
+        }
+      
+        #box-2 {
+          background-color: orangered;
+          width: 50%;
+          height: 50%;
+        }
+      </style>
+      
+      <div id="box-container">
+        <div id="box-1"></div>
+        <div id="box-2"></div>
+      </div> -->
+
+      <!-- 6.APLICA LA PROPIEDAD FLEX-DIRECTION PARA CREAR COLUMNAS EN EL TWEET INSERTADO 
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+        }
+        header, footer {
+          display: flex;
+          flex-direction: row;
+        }
+        header .profile-thumbnail {
+          width: 50px;
+          height: 50px;
+          border-radius: 4px;
+        }
+        header .profile-name {
+          display: flex;
+          flex-direction: column;
+          margin-left: 10px;
+        }
+        header .follow-btn {
+          display: flex;
+          margin: 0 0 0 auto;
+        }
+        header .follow-btn button {
+          border: 0;
+          border-radius: 3px;
+          padding: 5px;
+        }
+        header h3, header h4 {
+          display: flex;
+          margin: 0;
+        }
+        #inner p {
+          margin-bottom: 10px;
+          font-size: 20px;
+        }
+        #inner hr {
+          margin: 20px 0;
+          border-style: solid;
+          opacity: 0.1;
+        }
+        footer .stats {
+          display: flex;
+          font-size: 15px;
+        }
+        footer .stats strong {
+          font-size: 18px;
+        }
+        footer .stats .likes {
+          margin-left: 10px;
+        }
+        footer .cta {
+          margin-left: auto;
+        }
+        footer .cta button {
+          border: 0;
+          background: transparent;
+        }
+      </style>
+      <header>
+        <img src="https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg" alt="Quincy Larson's profile picture" class="profile-thumbnail">
+        <div class="profile-name">
+          <h3>Quincy Larson</h3>
+          <h4>@ossia</h4>
+        </div>
+        <div class="follow-btn">
+          <button>Follow</button>
+        </div>
+      </header>
+      <div id="inner">
+        <p>I meet so many people who are in search of that one trick that will help them work smart. Even if you work smart, you still have to work hard.</p>
+        <span class="date">1:32 PM - 12 Jan 2018</span>
+        <hr>
+      </div>
+      <footer>
+        <div class="stats">
+          <div class="Retweets">
+            <strong>107</strong> Retweets
+          </div>
+          <div class="likes">
+            <strong>431</strong> Likes
+          </div>
+        </div>
+        <div class="cta">
+          <button class="share-btn">Share</button>
+          <button class="retweet-btn">Retweet</button>
+          <button class="like-btn">Like</button>
+        </div>
+      </footer> -->
+
+      <!-- 7.ALINEA ELEMENTOS MEDIANTE LA PROPIEDAD JUSTIFY-CONTENT
+      <style>
+        #box-container {
+          background: gray;
+          display: flex;
+          height: 500px;
+          justify-content: center;
+        }
+        #box-1 {
+          background-color: dodgerblue;
+          width: 25%;
+          height: 100%;
+        }
+      
+        #box-2 {
+          background-color: orangered;
+          width: 25%;
+          height: 100%;
+        }
+      </style>
+      
+      <div id="box-container">
+        <div id="box-1"></div>
+        <div id="box-2"></div>
+      </div>  -->
+
+      <!-- 8.UTILIZA LA PROPIEDAD JUSTIFY-CONTENT EN EL TWEET INSERTADO 
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+        }
+        header, footer {
+          display: flex;
+          flex-direction: row;
+        }
+        header .profile-thumbnail {
+          width: 50px;
+          height: 50px;
+          border-radius: 4px;
+        }
+        header .profile-name {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          margin-left: 10px;
+        }
+        header .follow-btn {
+          display: flex;
+          margin: 0 0 0 auto;
+        }
+        header .follow-btn button {
+          border: 0;
+          border-radius: 3px;
+          padding: 5px;
+        }
+        header h3, header h4 {
+          display: flex;
+          margin: 0;
+        }
+        #inner p {
+          margin-bottom: 10px;
+          font-size: 20px;
+        }
+        #inner hr {
+          margin: 20px 0;
+          border-style: solid;
+          opacity: 0.1;
+        }
+        footer .stats {
+          display: flex;
+          font-size: 15px;
+        }
+        footer .stats strong {
+          font-size: 18px;
+        }
+        footer .stats .likes {
+          margin-left: 10px;
+        }
+        footer .cta {
+          margin-left: auto;
+        }
+        footer .cta button {
+          border: 0;
+          background: transparent;
+        }
+      </style>
+      <header>
+        <img src="https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg" alt="Quincy Larson's profile picture" class="profile-thumbnail">
+        <div class="profile-name">
+          <h3>Quincy Larson</h3>
+          <h4>@ossia</h4>
+        </div>
+        <div class="follow-btn">
+          <button>Follow</button>
+        </div>
+      </header>
+      <div id="inner">
+        <p>I meet so many people who are in search of that one trick that will help them work smart. Even if you work smart, you still have to work hard.</p>
+        <span class="date">1:32 PM - 12 Jan 2018</span>
+        <hr>
+      </div>
+      <footer>
+        <div class="stats">
+          <div class="Retweets">
+            <strong>107</strong> Retweets
+          </div>
+          <div class="likes">
+            <strong>431</strong> Likes
+          </div>
+        </div>
+        <div class="cta">
+          <button class="share-btn">Share</button>
+          <button class="retweet-btn">Retweet</button>
+          <button class="like-btn">Like</button>
+        </div>
+      </footer> -->
+
+      <!-- 9.ALINEA ELEMENTOS MEDIANTE LA PROPIEDAD ALIGN-ITEMS 
+      <style>
+        #box-container {
+          background: gray;
+          display: flex;
+          height: 500px;
+          align-items: center;
+        }
+        #box-1 {
+          background-color: dodgerblue;
+          width: 200px;
+          font-size: 24px;
+        }
+      
+        #box-2 {
+          background-color: orangered;
+          width: 200px;
+          font-size: 18px;
+        }
+      </style>
+      
+      <div id="box-container">
+        <div id="box-1"><p>Hello</p></div>
+        <div id="box-2"><p>Goodbye</p></div>
+      </div> -->
+      
+      <!-- 10.UTILIZA LA PROPIEDAD ALIGN-ITEMS EN EL TWEET INSERTADO 
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+        }
+        header, footer {
+          display: flex;
+          flex-direction: row;
+        }
+        header .profile-thumbnail {
+          width: 50px;
+          height: 50px;
+          border-radius: 4px;
+        }
+        header .profile-name {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          margin-left: 10px;
+        }
+        header .follow-btn {
+          display: flex;
+          align-items: center;
+          margin: 0 0 0 auto;
+        }
+        header .follow-btn button {
+          border: 0;
+          border-radius: 3px;
+          padding: 5px;
+        }
+        header h3, header h4 {
+          display: flex;
+          margin: 0;
+        }
+        #inner p {
+          margin-bottom: 10px;
+          font-size: 20px;
+        }
+        #inner hr {
+          margin: 20px 0;
+          border-style: solid;
+          opacity: 0.1;
+        }
+        footer .stats {
+          display: flex;
+          font-size: 15px;
+        }
+        footer .stats strong {
+          font-size: 18px;
+        }
+        footer .stats .likes {
+          margin-left: 10px;
+        }
+        footer .cta {
+          margin-left: auto;
+        }
+        footer .cta button {
+          border: 0;
+          background: transparent;
+        }
+      </style>
+      <header>
+        <img src="https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg" alt="Quincy Larson's profile picture" class="profile-thumbnail">
+        <div class="profile-name">
+          <h3>Quincy Larson</h3>
+          <h4>@ossia</h4>
+        </div>
+        <div class="follow-btn">
+          <button>Follow</button>
+        </div>
+      </header>
+      <div id="inner">
+        <p>I meet so many people who are in search of that one trick that will help them work smart. Even if you work smart, you still have to work hard.</p>
+        <span class="date">1:32 PM - 12 Jan 2018</span>
+        <hr>
+      </div>
+      <footer>
+        <div class="stats">
+          <div class="Retweets">
+            <strong>107</strong> Retweets
+          </div>
+          <div class="likes">
+            <strong>431</strong> Likes
+          </div>
+        </div>
+        <div class="cta">
+          <button class="share-btn">Share</button>
+          <button class="retweet-btn">Retweet</button>
+          <button class="like-btn">Like</button>
+        </div>
+      </footer> -->
+
+      <!-- 11.USA LA PROPIEDAD FLEX-WRAP PARA ENVOLVER UNA FILA O COLUMNA
+      <style>
+        #box-container {
+          background: gray;
+          display: flex;
+          height: 100%;
+          flex-wrap: wrap;
+        }
+        #box-1 {
+          background-color: dodgerblue;
+          width: 25%;
+          height: 50%;
+        }
+      
+        #box-2 {
+          background-color: orangered;
+          width: 25%;
+          height: 50%;
+        }
+        #box-3 {
+          background-color: violet;
+          width: 25%;
+          height: 50%;
+        }
+        #box-4 {
+          background-color: yellow;
+          width: 25%;
+          height: 50%;
+        }
+        #box-5 {
+          background-color: green;
+          width: 25%;
+          height: 50%;
+        }
+        #box-6 {
+          background-color: black;
+          width: 25%;
+          height: 50%;
+        }
+      </style>
+      
+      <div id="box-container">
+        <div id="box-1"></div>
+        <div id="box-2"></div>
+        <div id="box-3"></div>
+        <div id="box-4"></div>
+        <div id="box-5"></div>
+        <div id="box-6"></div>
+      </div>  -->
+
+      <!-- 12.UTILIZA LA PROPIEDAD FLEX-SHRINK PARA REDUCIR ELEMENTOS 
+      <style>
+        #box-container {
+          display: flex;
+          height: 500px;
+        }
+        #box-1 {
+          background-color: dodgerblue;
+          width: 100%;
+          height: 200px;
+          flex-shrink: 1;
+        }
+      
+        #box-2 {
+          background-color: orangered;
+          width: 100%;
+          height: 200px;
+          flex-shrink: 2;
+        }
+      </style>
+      
+      <div id="box-container">
+        <div id="box-1"></div>
+        <div id="box-2"></div>
+      </div> -->
+
+      <!-- 13.USA LA PROPIEDAD FLEX-GROW PARA EXPANDIR ELEMENTOS 
+      <style>
+        #box-container {
+          display: flex;
+          height: 500px;
+        }
+      
+        #box-1 {
+          background-color: dodgerblue;
+          height: 200px;
+          flex-grow: 1;
+        }
+      
+        #box-2 {
+          background-color: orangered;
+          height: 200px;
+          flex-grow: 2;
+        }
+      </style>
+      
+      <div id="box-container">
+        <div id="box-1"></div>
+        <div id="box-2"></div>
+      </div> -->
+
+      <!-- 14.USA LA PROPIEDAD FLEX-BASIS PARA ESTABLECER EL TAMAÑO INICIAL DE UN ELEMENTO 
+      <style>
+        #box-container {
+          display: flex;
+          height: 500px;
+        }
+      
+        #box-1 {
+          background-color: dodgerblue;
+          height: 200px;
+          flex-basis: 10em;
+        }
+      
+        #box-2 {
+          background-color: orangered;
+          height: 200px;
+          flex-basis: 20em;
+        }
+      </style>
+      
+      <div id="box-container">
+        <div id="box-1"></div>
+        <div id="box-2"></div>
+      </div> -->
+
+      <!-- 15.USA LA PROPIEDAD ABREVIADA FLEX 
+      <style>
+        #box-container {
+          display: flex;
+          height: 500px;
+        }
+        #box-1 {
+          background-color: dodgerblue;
+          flex: 2 2 150px;
+          height: 200px;
+        }
+      
+        #box-2 {
+          background-color: orangered;
+          flex: 1 1 150px;
+          height: 200px;
+        }
+      </style>
+      
+      <div id="box-container">
+        <div id="box-1"></div>
+        <div id="box-2"></div>
+      </div> -->
+
+      <!-- 16.USA LA PROPIEDAD ORDER PARA REORGANIZAR LOS ELEMENTOS 
+      <style>
+        #box-container {
+          display: flex;
+          height: 500px;
+        }
+        #box-1 {
+          background-color: dodgerblue;
+          order: 2;  
+          height: 200px;
+          width: 200px;
+        }
+      
+        #box-2 {
+          background-color: orangered;
+          order: 1;
+          height: 200px;
+          width: 200px;
+        }
+      </style>
+      
+      <div id="box-container">
+        <div id="box-1"></div>
+        <div id="box-2"></div>
+      </div> -->
+
+      <!-- 17.USA LA PROPIEDAD ALIGN-SELF 
+      <style>
+        #box-container {
+          display: flex;
+          height: 500px;
+        }
+        #box-1 {
+          background-color: dodgerblue;
+          align-self: center;
+          height: 200px;
+          width: 200px;
+        }
+      
+        #box-2 {
+          background-color: orangered;
+          align-self: flex-end;
+          height: 200px;
+          width: 200px;
+        }
+      </style>
+      
+      <div id="box-container">
+        <div id="box-1"></div>
+        <div id="box-2"></div>
+      </div> -->
+
+
+
+
+
+
+    
+</body>
+</html>

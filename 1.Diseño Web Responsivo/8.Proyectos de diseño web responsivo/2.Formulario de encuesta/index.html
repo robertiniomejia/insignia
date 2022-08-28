@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Formulario de encuesta</title>
+</head>
+<body>
+    <main>
+        <header>
+            <h1 id="title">Formulario de encuesta</h1>
+            <p id="description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </header>
+
+        <form id="survey-form" action="">
+            <div class="items">
+                <label id="name-label" for="name">Nombre</label>
+                <input id="name" type="text" placeholder="Escribe tu nombre" required>
+            </div>
+            
+            <div class="items">       
+                <label id="email-label" for="email">Email</label>
+                <input id="email" type="email" placeholder="Escribe tu email" required>
+            </div>
+            <div class="items"> 
+                <label id="number-label" for="number">Edad</label>
+                <input id="number" type="number" placeholder="Edad" required min="18" max="55">
+            </div>
+
+            <div class="items">   
+                <label id="lista-label" for="lista">¿Qué tipo de género de musica escuchas más?</label>
+                <select name="Selecciona un curso" id="dropdown">
+                    <option name ="lista" disabled="" selected="" value="">Selecciona un género musical</option>
+                    <option name ="lista" value="rock">Rock</option>
+                    <option name ="lista" value="salsa">Salsa</option>
+                    <option name ="lista" value="instrumental">Instrumental</option>
+                    <option name ="lista" value="regueton">Reguetón</option>
+                    <option name ="lista" value="otros">Otros</option>
+                </select>
+            </div>
+
+            <div class="items">
+                <p>¿En que momento prefieres escuchar música?</p>
+                    <label>
+                        <input name="musica-1" type="radio" name="tiempo-musica" value="mañana" checked >Mañana<br>
+                    </label>
+                    <label>
+                        <input name="musica-1" type="radio" name="tiempo-musica" value="tarde" >Tarde<br>
+                    </label>
+                    <label>
+                        <input name="musica-1" type="radio" name="tiempo-musica" value="noche" >Noche<br>
+                    </label>
+            </div>
+
+            <div class="items">
+                <label id="lista-label" for="lista">¿Cuál es tu profesion?</label>
+                <select name="Selecciona un curso" id="dropdown">
+                    <option disabled="" selected="" value="">Abogado</option>
+                    <option value="profesor">Profesor</option>
+                    <option value="chef">Chef</option>
+                    <option value="medico">Médico</option>
+                    <option value="presidente">Presidente</option>
+                    <option value="youtuber">Youtuber</option>
+                </select>
+            </div>    
+
+            <div class="items">
+                <p>¿Cual es tu profesion?</p>
+                <label>
+                    <input type="checkbox" name="musica-2" value="Abogado">Abogado<br>
+                </label>
+                <label>
+                    <input type="checkbox" name="musica-2" value="Profesor">Profesor<br>
+                </label>
+                <label>
+                    <input type="checkbox" name="musica-2" value="Presidente">Presidente<br>
+                </label>
+                <label>
+                    <input type="checkbox" name="musica-2" value="Medico">Medico<br>
+                </label>
+                <label>
+                    <input type="checkbox" name="musica-2" value="Chef">Chef<br>
+                </label>
+                <label>
+                    <input type="checkbox" name="musica-2" value="Futbolista">Futbolista<br>
+                </label>
+            </div> 
+
+            <div class="items">
+                <p>Dejanos un mensaje</p>
+                <textarea name="mensaje" id="mensaje" cols="30" rows="10" placeholder="Escribe algo aquí."></textarea>
+                <button id="submit" type="submit">Enviar</button>
+            </div>    
+        </form>
+    </main>
+
+     <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    
+</body>
+</html>

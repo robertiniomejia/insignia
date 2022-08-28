@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Mono:wght@400;700&display=swap');
+
+
+:root {
+    --color-fondo-gradiente: linear-gradient(100deg, var(--color-fondo-body), var(--color-fondo-blanco-transparente));
+    --color-fondo-section: #2b2b4f;
+    --color-fondo-body: #1B1B32;
+    --color-fondo-header: #121221;
+    --color-fondo-blanco-transparente: #2b2b4f; 
+    --color-texto-blanco: #E7F6F7;
+    --fuente-roboto: 'Roboto Mono', monospace;
+    --fuente-lato:'Lato', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    background-color: var(--color-fondo-header);
+    box-shadow: 5px 5px 5px black;
+    z-index: 2;
+}
+
+#navbar {   
+    position: absolute;
+    right: 40px;
+    top: 0;
+    width: 270px;
+    height: auto;
+    background-color: var(--color-fondo-header);
+    z-index: 1;
+}
+
+ul {
+    margin-top: 25px;
+    padding: 0;
+    display: flex;
+}
+
+li {
+     padding: 0px 30px 0px 0px;
+     list-style: none;
+     
+}
+
+a {
+    color: var(--color-texto-blanco);
+    font-family: var(--fuente-roboto);
+    font-size: 22px;
+    text-decoration: none;
+}
+
+main {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+}
+
+#welcome-section, #projects, #contact {
+    position: relative;
+    width: 900px;
+    background-image: var(--color-fondo-gradiente);
+    z-index: 1;
+    margin: 0 auto;
+}
+
+#welcome-section {
+    height: 100vh;
+}
+
+#projects {
+    height: 1100px;
+}
+
+#contact {
+    height: 800px;
+}
+
+#ver-mas {
+    width: 200px;
+    height: 40px;
+    background-color: var(--color-fondo-blanco-transparente);
+    padding: 20px;
+    margin: 0 auto;
+    margin-top: -180px;
+}
+
+#ver-mas p {
+    position: relative;
+    top: -85px;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-family: var(--fuente-roboto);
+}
+
+h1, h2 {
+    position: relative;
+    top: 33%; 
+    text-align: center;
+    font-family: var(--fuente-lato);
+    font-size: 60px;
+    color: var(--color-texto-blanco);
+}
+
+h2 {
+    top: 100px;
+}
+
+p {
+    width: 700px;
+    position: relative;
+    color: var(--color-texto-blanco);
+    font-size: 20px;
+    font-family: var(--fuente-lato);
+    line-height: 1.5;
+    text-align: center;
+    padding-top: 70px;
+    margin: 0 auto;
+}
+
+#galery {
+    width: 790px;
+    height: auto;
+    display: grid;
+    grid-template-columns: 250px 250px 250px;
+    grid-template-rows: 250px 250px 250px;
+    gap: 20px;
+    margin: 0 auto;
+    position: relative;
+    top: 30px;
+}
+
+img {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+}
+
+#project-tile {
+    background-color: var(--color-fondo-blanco-transparente);
+    box-shadow: 5px 5px 5px black;
+}
+
+#redes-sociales {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 120px;
+}
+
+.fa-brands {
+    padding: 10px;
+    color: var(--color-texto-blanco);
+}
+
+#profile-link {
+    margin: 20px;
+}
+
+@media (max-width: 900px) {
+    #welcome-section, #projects, #contact {
+        width: 600px;
+    }
+
+    #galery {
+        width: 530px;
+        grid-template-columns: 250px 250px;
+        grid-template-rows: 250px 250px 250px;
+        margin: 0 auto;
+    }
+
+    #projects {
+        height: 1250px;
+    }
+
+    #ver-mas {
+        position: relative;
+        top: 240px;
+    }
+    p {
+        width: 600px;
+    }
+
+    #redes-sociales {
+        display: inline-flex;
+        height: 500px;
+    }
+}
+
+@media (max-width: 600px) {
+    #welcome-section, #projects, #contact {
+        width: 400px;
+    }
+
+    #galery {
+        width: 250px;
+        grid-template-columns: 250px;
+        grid-template-rows: 250px 250px 250px 250px 250px 250px 250px 250px;
+        margin: 0 auto;
+    }
+
+    #projects {
+        height: 2150px;
+    }
+
+    #ver-mas {
+        position: relative;
+        top: -280px;
+    }
+
+    p {
+        width: 400px;
+    }
+}

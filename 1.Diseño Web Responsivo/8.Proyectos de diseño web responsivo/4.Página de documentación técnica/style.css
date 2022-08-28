@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Mono:wght@400;700&display=swap');
+
+
+:root {
+    --color-fondo-body: #1B1B32;
+    --color-fondo-header: #1B1B32;
+    --color-fondo-blanco-transparente: #c0c0c041; 
+    --color-texto-blanco: #E7F6F7;
+    --fuente-roboto: 'Roboto Mono', monospace;
+    --fuente-lato:'Lato', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-texto-blanco);
+    display: grid;
+    grid-template-columns: 261px minmax(500px, 100%);
+    grid-template-areas: "sidebar main";  
+}
+
+#navbar {
+    font-family: var(--fuente-roboto);
+    font-weight: 700;
+    position: fixed;
+    grid-area: sidebar;
+}
+
+#header {
+    font-size: 20px;
+    font-family: var(--fuente-lato);
+}
+
+.nav-link {
+    width: 200px;
+    height: auto;
+    padding: 15px 30px;
+    display: flex;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    line-height: 1.5;
+    font-size: 20px;
+}
+
+#main-doc{
+    max-width: 100%;
+    height: auto;
+    border: 1px solid black;
+    padding: 40px;
+    grid-area: main;
+}
+
+header {
+    text-align: center;
+    padding: 30px 0px;
+    font-family: var(--fuente-lato);
+    font-size: 30px;
+}
+
+p {
+    line-height: 1.5;
+    font-size: 20px;
+}
+
+code {
+    max-width: 100%;
+    background-color: var(--color-fondo-body);
+    padding: 10px;
+    border-radius: 5px;
+    color: var(--color-texto-blanco);
+}
+
+@media (max-width: 800px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: 1fr, 1fr;
+    }
+
+    #navbar {
+        width: 100%;
+        position: absolute;
+    } 
+
+    #header {
+        width: 100%;
+    }
+
+    #main-doc {
+        width: 90%;
+        position: relative;
+        top: 300px;
+        
+    }
+
+    .nav-link {
+        width: 100%;
+        text-align: center;
+    }
+    
+
+}

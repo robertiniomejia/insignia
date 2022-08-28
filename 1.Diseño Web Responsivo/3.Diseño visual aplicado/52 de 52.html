@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño visual aplicado</title>
+</head>
+<body>
+    <!-- IMPORTANTE:
+    1.text-align
+    text-align: justify; (espacia el texto para que cada 
+                        línea tenga el mismo ancho).
+    text-align: center; (centra el texto).
+    text-align: right; (alinea el texto hacia la derecha).text-align: left; (opción por defecto) alinea el texto hacia la izquierda. 
+    --------------------
+    4.strong (negrita)
+    Con la etiqueta strong, el navegador aplica el CSS de font-weight: bold; al elemento.
+    --------------------
+    5.u (subrayado)
+    Con la etiqueta u, el navegador aplica el CSS de text-decoration: underline;
+    --------------------
+    6.em (cursiva)
+    Esto muestra el texto en cursiva, ya que el navegador aplica el CSS de font-style: italic; al elemento.
+    --------------------
+    7.s (Subrayado en el centro)
+    Con la etiqueta s, el navegador aplica el CSS de text-decoration: line-through;
+    --------------------   
+    8.hr (línea)
+    Nota: en HTML, la etiqueta hr se cierra sola, por lo tanto no necesita una etiqueta de cierre por separado.
+    --------------------
+    11.box-shadow (sombra)
+    La propiedad box-shadow toma valores para
+    offset-x (qué tan lejos extender la sombra horizontalmente desde el elemento),
+    offset-y (qué tan lejos extender la sombra verticalmente desde el elemento),
+    blur-radius,
+    spread-radius y
+    color, en ese orden.
+    Los valores blur-radius y spread-radius son opcionales.Ejemplo:
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    box-shadow: 25px 10px 0px 0px green;
+    -------------------
+    13.text-transform (transformar el texto)
+    La siguiente tabla muestra como los diferentes valores de text-transform cambian el texto de ejemplo "Transformame".
+    Valor	Resultado
+    lowercase	"Transformame"
+    uppercase	"TRANSFORMAME"
+    capitalize	"Transformame"
+    initial	Usa el valor predeterminado
+    inherit	Utiliza el valor text-transform del elemento principal
+    none	Predeterminado: Usa el texto original
+    -------------------
+    15.font-weight (grosor de caracter)
+    -------------------    
+    17.line-height (interlineado)
+    -------------------
+    19.position: relative (sobreescribir el flujo normal / posición)
+    Los elementos bloque automáticamente empiezan en una nueva línea (piensa en las etiquetas título, párrafos y divs) mientras que los elementos en línea se ubican entre el contenido al rededor (como imágenes o spans). 
+    Se empareja con las propiedades de desplazamiento CSS de left o right, y top o bottom. 
+    - Cambiando la posición de un elemento a relative no lo quita del flujo normal; otros elementos a su alrededor aún se comportarán como si dicho elemento estuviera en su posición predeterminada.
+    -------------------
+    21.position: absolute
+    position es absolute, que bloquea el elemento en su lugar en relación con su contenedor principal. A diferencia de la posición relative, esto elimina el elemento del flujo normal del documento, por lo que los elementos circundantes lo "IGNORAN".
+    Un matiz del posicionamiento absoluto es que estará bloqueado en relación con su antepasado posicionado más cercano. Si olvidas agregar una regla de posición al elemento principal, (esto generalmente se hace usando position: relative;), el navegador seguirá buscando en la jerarquía de elementos y, en última instancia tomará por defecto la etiqueta body.
+    --------------------
+    22.position:fixed (un tipo de posición absoluto)
+    posición fixed, que es un tipo de posicionamiento absoluto que bloquea un elemento relativo a la ventana del navegador. 
+    Una diferencia clave entre las posiciones fixed y absolute es que un elemento con una posición fija (fixed) no se moverá cuando el usuario se desplace.
+    --------------------
+    23.float (flotante)
+    No usa position, sino que establece la propiedad float de un elemento. Los elementos flotantes se eliminan del flujo normal de un documento y se empujan a left o right de su elemento padre contenedor. Se usa comúnmente con la propiedad width para especificar cuanto espacio horizontal requiere el elemento flotante.
+    --------------------
+    24.z-index (especifica el orden de los elementos apilados)
+    Cuando los elementos son posicionados para superponerse (i.e. usando position: absolute | relative | fixed | sticky), el elemento que viene después dentro del marcado HTML aparecerá, por defecto, encima de los otros elementos. Sin embargo, la propiedad z-index puede especificar el orden de cómo los elementos están apilados unos sobre otros. Debe ser un entero (i.e. un número entero y no un decimal), y los elementos que mayor valor tengan en z-index serán movidos más arriba en la pila de elementos que aquellos con valores menores.
+    ---------------------
+    27.color terciario
+    Los colores terciarios se forman al combinar dos colores primarios con uno de sus vecinos de color secundario. Por ejemplo, entre el modelo de color RGB, rojo (primario) y amarillo (secundario) forman naranja (terciario). Esto añade seis colores a un círculo cromático simple para un total de doce.
+    ---------------------
+    31.background: linear-gradient(gradient_direction, color 1, color 2, color 3, ...);
+    Ejemplo:
+    background: linear-gradient(90deg, red, yellow, rgb(204, 204, 255));
+    ---------------------
+    32.background: repeating-linear-gradient()
+    Ejemplo:
+    background: repeating-linear-gradient(45deg, yellow 0px, yellow 40px, black 40px, black 80px);
+    ---------------------
+    34.funcion scale de la propiedad transform (escala los elementos)
+    Ejemplo:
+    div{
+      transform: scale(2)
+    }
+    CSS tiene la propiedad transform, junto con su función scale(). En el ejemplo de código siguiente se duplica el tamaño de todos los elementos de párrafo de la página
+    ---------------------
+    36.funcion skewX() de la propiedad transform (inclina elemento a lo largo del eje x)
+    Ejemplo.
+      p {
+        transform: skewX(-32deg);
+      }
+    ---------------------
+    37.funcion skewY() de la propiedad transform (se inclina en el eje Y)
+    ---------------------
+    40.animaciones (existe 8 propiedades)
+    animation-name establece el nombre de la animación, que luego es utilizada por @keyframes para decirle a CSS que reglas van con que animaciones.
+
+    animation-duration establece el tiempo de la animación.
+
+    @keyframes es como especificar exactamente lo que sucede dentro de la animación durante la duración. Esto se hace dando propiedades CSS para "marcos" específicos durante la animación, con porcentajes que van del 0% al 100%. Si comparas esto con una película, las propiedades de CSS de 0% es como se muestra el elemento en la escena inicial. Las propiedades de CSS con 100% es como aparece el elemento al final, justo antes de que rueden los créditos. Luego, CSS aplica la magia para hacer la transición del elemento durante la duración dada para representar la escena. Aquí hay un ejemplo para ilustrar el uso de @keyframes y las propiedades de animación:
+    Ejemplo:
+    #anim {
+      animation-name: colorful;
+      animation-duration: 3s;
+    }
+
+    @keyframes colorful {
+      0% {
+        background-color: blue;
+      }
+      100% {
+        background-color: yellow;
+      }
+    }
+    nota:Ten en cuenta que ms significa milisegundos, donde 1000ms es igual a 1s.
+    ---------------------
+    42.animation-fill-mode (propiedad de animación)
+    sto se puede hacer estableciendo la propiedad animation-fill-mode en forwards. El animation-fill-mode especifica el estilo aplicado a un elemento cuando la animación ha finalizado. Puedes configurarlo así:
+    Ejejmplo:
+    animation-fill-mode: forwards;
+    ----------------------
+    45.animation-iteration-count (Cuenta las animaciones)
+    la cual te permite controlar cuántas veces te gustaría hacer un bucle a través de la animación. Por ejemplo:
+    Ejemplo1:
+    animation-iteration-count: 3;
+    Ejemplo2:
+    animation-iteration-count: infinite;
+    En este caso, la animación se detendrá después de ejecutarse 3 veces, pero es posible hacer que la animación se ejecute continuamente estableciendo ese valor en "infinite".
+    -----------------------
+    49.animation-timing-function (duración de la animación)
+    animation-timing-function controla qué tan rápido un elemento animado cambia sobre la duración total de la animación. Si la animación es un carro moviéndose de un punto A a un punto B en un tiempo establecido (tu animation-duration), la animation-timing-function dicta cómo el carro acelera y desacelera durante el transcurso en marcha.
+
+    Existe un número de palabras clave predefinidas disponibles para las opciones populares. Por ejemplo, el valor por defecto es ease, que empieza despacio, acelera en el medio y luego reduce la velocidad de nuevo al final. Otras opciones incluye ease-out, que es rápida al inicio y luego reduce la velocidad, ease-in, que es lenta al inicio y luego acelera al final, o linear, que aplica una velocidad constante a lo largo de la animación.
+    -----------------------
+    -->
+
+    <!-- 1.CREA UN BALANCE VISUAL USANDO LA PROPIEDAD TEXT-ALIGN 
+    <style>
+        h4 {
+          text-align: center
+        }
+        p {
+          text-align: justify;
+        }
+        .links {
+          margin-right: 20px;
+      
+        }
+        .fullCard {
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 10px 5px;
+          padding: 4px;
+        }
+        .cardContent {
+          padding: 10px;
+        }
+    </style>
+    <div class="fullCard">
+    <div class="cardContent">
+        <div class="cardText">
+        <h4>Google</h4>
+        <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at Stanford University.</p>
+        </div>
+        <div class="cardLinks">
+        <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a>
+        <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+        </div>
+    </div>
+    </div> -->
+
+    <!-- 2.AJUSTA EL ANCHO DE UN ELEMENTO UTILIZANDO LA PROPIEDAD WIDTH 
+    <style>
+        h4 {
+          text-align: center;
+        }
+        p {
+          text-align: justify;
+        }
+        .links {
+          margin-right: 20px;
+          text-align: left;
+        }
+        .fullCard {
+          width: 245px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 10px 5px;
+          padding: 4px;
+        }
+        .cardContent {
+          padding: 10px;
+        }
+    </style>
+    <div class="fullCard">
+    <div class="cardContent">
+        <div class="cardText">
+        <h4>Google</h4>
+        <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at Stanford University.</p>
+        </div>
+        <div class="cardLinks">
+        <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a>
+        <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+        </div>
+    </div>
+    </div> -->
+
+    <!-- 3.AJUSTA LA ALTURA DE UN ELEMENTO UTILIZANDO LA PROPIEDAD HEIGHT 
+    <style>
+        h4 {
+          text-align: center;
+          height: 25px;
+        }
+        p {
+          text-align: justify;
+        }
+        .links {
+          margin-right: 20px;
+          text-align: left;
+        }
+        .fullCard {
+          width: 245px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 10px 5px;
+          padding: 4px;
+        }
+        .cardContent {
+          padding: 10px;
+        }
+    </style>
+    <div class="fullCard">
+    <div class="cardContent">
+        <div class="cardText">
+        <h4>Google</h4>
+        <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at Stanford University.</p>
+        </div>
+        <div class="cardLinks">
+        <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a>
+        <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+        </div>
+    </div>
+    </div> -->
+
+    <!-- 4.UTILIZA LA ETIQUETA STRONG PARA PONER EL TEXTO EN NEGRITA 
+    <style>
+        h4 {
+          text-align: center;
+          height: 25px;
+        }
+        p {
+          text-align: justify;
+        }
+        .links {
+          text-align: left;
+          color: black;
+        }
+        .fullCard {
+          width: 245px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 10px 5px;
+          padding: 4px;
+        }
+        .cardContent {
+          padding: 10px;
+        }
+        .cardText {
+          margin-bottom: 30px;
+        }
+    </style>
+    <div class="fullCard">
+    <div class="cardContent">
+        <div class="cardText">
+        <h4>Google</h4>
+        <p>Google was founded by Larry Page and Sergey Brin while they were Ph.D. students at <strong>Stanford University</strong>.</p>
+        </div>
+        <div class="cardLinks">
+        <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
+        <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+        </div>
+    </div>
+    </div> -->
+
+    <!-- 5.UTILIZA LA ETIQUETA U PARA SUBRAYAR TEXTO 
+    <style>
+        h4 {
+          text-align: center;
+          height: 25px;
+        }
+        p {
+          text-align: justify;
+        }
+        .links {
+          text-align: left;
+          color: black;
+        }
+        .fullCard {
+          width: 245px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 10px 5px;
+          padding: 4px;
+        }
+        .cardContent {
+          padding: 10px;
+        }
+        .cardText {
+          margin-bottom: 30px;
+        }
+    </style>
+    <div class="fullCard">
+    <div class="cardContent">
+        <div class="cardText">
+        <h4>Google</h4>
+        <p>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</p>
+        </div>
+        <div class="cardLinks">
+        <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
+        <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+        </div>
+    </div>
+    </div> -->
+
+    <!-- 6.USA LA ETIQUETA EM PARA PONER TEXTO EN CURSIVA 
+    <style>
+        h4 {
+            text-align: center;
+            height: 25px;
+        }
+        p {
+            text-align: justify;
+        }
+        .links {
+            text-align: left;
+            color: black;
+        }
+        .fullCard {
+            width: 245px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 5px;
+            padding: 4px;
+        }
+        .cardContent {
+            padding: 10px;
+        }
+        .cardText {
+            margin-bottom: 30px;
+        }
+    </style>
+    <div class="fullCard">
+    <div class="cardContent">
+        <div class="cardText">
+        <h4>Google</h4>
+        <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+        </div>
+        <div class="cardLinks">
+        <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
+        <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+        </div>
+    </div>
+    </div> -->
+
+    <!-- 7.USA LA ETIQUETA S PARA TACHAR TEXTO
+    <style>
+        h4 {
+          text-align: center;
+          height: 25px;
+        }
+        p {
+          text-align: justify;
+        }
+        .links {
+          text-align: left;
+          color: black;
+        }
+        .fullCard {
+          width: 245px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 10px 5px;
+          padding: 4px;
+        }
+        .cardContent {
+          padding: 10px;
+        }
+        .cardText {
+          margin-bottom: 30px;
+        }
+    </style>
+    <div class="fullCard">
+    <div class="cardContent">
+        <div class="cardText">
+        <h4><s>Google</s>Alphabet</h4>
+        <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+        </div>
+        <div class="cardLinks">
+        <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
+        <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+        </div>
+    </div>
+    </div>  -->
+
+    <!-- 8.CREA UNA LÍNEA HORIZONTAL USANDO EL ELEMENTO HR 
+    <style>
+        h4 {
+          text-align: center;
+          height: 25px;
+        }
+        p {
+          text-align: justify;
+        }
+        .links {
+          text-align: left;
+          color: black;
+        }
+        .fullCard {
+          width: 245px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 10px 5px;
+          padding: 4px;
+        }
+        .cardContent {
+          padding: 10px;
+        }
+        .cardText {
+          margin-bottom: 30px;
+        }
+    </style>
+    <div class="fullCard">
+    <div class="cardContent">
+        <div class="cardText">
+        <h4><s>Google</s>Alphabet</h4>
+        <hr>
+        <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+        </div>
+        <div class="cardLinks">
+        <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
+        <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+        </div>
+    </div>
+    </div> -->
+
+    <!-- 9.AJUSTA LA PROPIEDAD BACKGROUND-COLOR DEL TEXTO
+    <style>
+        h4 {
+          text-align: center;
+          padding: 10px;
+          background-color: rgba(45,45,45,0.1);
+      
+        }
+        p {
+          text-align: justify;
+        }
+        .links {
+          text-align: left;
+          color: black;
+        }
+        .fullCard {
+          width: 245px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 10px 5px;
+          padding: 4px;
+        }
+        .cardContent {
+          padding: 10px;
+        }
+        .cardText {
+          margin-bottom: 30px;
+        }
+    </style>
+    <div class="fullCard">
+    <div class="cardContent">
+        <div class="cardText">
+        <h4>Alphabet</h4>
+        <hr>
+        <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+        </div>
+        <div class="cardLinks">
+        <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
+        <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+        </div>
+    </div>
+    </div>  -->
+
+    <!-- 10.AJUSTAR EL TAMAÑO DE UN ELEMENTO DE ENCABEZADO FRENTE A UN ELEMENTO DE PÁRRAFO 
+    <style>
+        h4 {
+          text-align: center;
+          background-color: rgba(45, 45, 45, 0.1);
+          padding: 10px;
+          font-size: 27px;
+      
+        }
+        p {
+          text-align: justify;
+        }
+        .links {
+          text-align: left;
+          color: black;
+        }
+        .fullCard {
+          width: 245px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 10px 5px;
+          padding: 4px;
+        }
+        .cardContent {
+          padding: 10px;
+        }
+        .cardText {
+          margin-bottom: 30px;
+        }
+    </style>
+    <div class="fullCard">
+    <div class="cardContent">
+        <div class="cardText">
+        <h4>Alphabet</h4>
+        <hr>
+        <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+        </div>
+        <div class="cardLinks">
+        <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
+        <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+        </div>
+    </div>
+    </div> -->
+
+    <!-- 11.AGREGA BOX-SHADOW A UN ELEMENTO TIPO TARJETA 
+    <style>
+        h4 {
+          text-align: center;
+          background-color: rgba(45, 45, 45, 0.1);
+          padding: 10px;
+          font-size: 27px;
+        }
+        p {
+          text-align: justify;
+        }
+        .links {
+          text-align: left;
+          color: black;
+        }
+      
+        #thumbnail{
+          box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        }
+      
+      
+        .fullCard {
+          width: 245px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 10px 5px;
+          padding: 4px;
+        }
+        .cardContent {
+          padding: 10px;
+        }
+        .cardText {
+          margin-bottom: 30px;
+        }
+    </style>
+    <div class="fullCard" id="thumbnail">
+    <div class="cardContent">
+        <div class="cardText">
+        <h4>Alphabet</h4>
+        <hr>
+        <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+        </div>
+        <div class="cardLinks">
+        <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
+        <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+        </div>
+    </div>
+    </div> -->
+
+    <!-- 12.DISMINUIR LA OPACIDAD DE UN ELEMENTO 
+    <style>
+        h4 {
+          text-align: center;
+          background-color: rgba(45, 45, 45, 0.1);
+          padding: 10px;
+          font-size: 27px;
+        }
+        p {
+          text-align: justify;
+        }
+        .links {
+          text-align: left;
+          color: black;
+      
+        }
+        #thumbnail {
+          box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        }
+        .fullCard {
+          width: 245px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 10px 5px;
+          padding: 4px;
+        }
+        .cardContent {
+          padding: 10px;
+        }
+        .cardText {
+          margin-bottom: 30px;
+        }
+      
+        .links {
+          opacity: 0.7;
+        }
+    </style>
+    <div class="fullCard" id="thumbnail">
+    <div class="cardContent">
+        <div class="cardText">
+        <h4>Alphabet</h4>
+        <hr>
+        <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+        </div>
+        <div class="cardLinks">
+        <a class="links" href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
+        <a class="links" href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+        </div>
+    </div>
+    </div> -->
+
+    <!-- 13.USA LA PROPIEDAD TEXT-TRANSFORM PARA HACER EL TEXTO MAYÚSCULAS 
+    <style>
+        h4 {
+          text-align: center;
+          background-color: rgba(45, 45, 45, 0.1);
+          padding: 10px;
+          font-size: 27px;
+          text-transform: uppercase;
+        }
+        p {
+          text-align: justify;
+        }
+        .links {
+          text-align: left;
+          color: black;
+          opacity: 0.7;
+        }
+        #thumbnail {
+          box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        }
+        .fullCard {
+          width: 245px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 10px 5px;
+          padding: 4px;
+        }
+        .cardContent {
+          padding: 10px;
+        }
+        .cardText {
+          margin-bottom: 30px;
+        }
+    </style>
+    <div class="fullCard" id="thumbnail">
+    <div class="cardContent">
+        <div class="cardText">
+        <h4>Alphabet</h4>
+        <hr>
+        <p><em>Google was founded by Larry Page and Sergey Brin while they were <u>Ph.D. students</u> at <strong>Stanford University</strong>.</em></p>
+        </div>
+        <div class="cardLinks">
+        <a href="https://en.wikipedia.org/wiki/Larry_Page" target="_blank" class="links">Larry Page</a><br><br>
+        <a href="https://en.wikipedia.org/wiki/Sergey_Brin" target="_blank" class="links">Sergey Brin</a>
+        </div>
+    </div>
+    </div> -->
+
+    <!-- 14.ESTABLECE EL TAMAÑO DE FUENTE PARA VARIOS ELEMENTOS DE TÍTULOS 
+    <style>
+        h1 {
+          font-size: 68px;
+        }
+        h2 {
+          font-size: 52px
+        }
+        h3 {
+          font-size: 40px;
+        }
+        h4 {
+          font-size: 32px;
+        }
+        h5 {
+          font-size: 21px;
+        }
+        h6 {
+          font-size: 14px;
+        }
+      
+    </style>
+    <h1>This is h1 text</h1>
+    <h2>This is h2 text</h2>
+    <h3>This is h3 text</h3>
+    <h4>This is h4 text</h4>
+    <h5>This is h5 text</h5>
+    <h6>This is h6 text</h6> -->
+
+    <!-- 15.ESTABLECE EL FONT-WEIGHT PARA VARIOS ELEMENTOS DE TÍTULOS 
+    <style>
+        h1 {
+          font-size: 68px;
+          font-weight: 800;
+      
+        }
+        h2 {
+          font-size: 52px;
+          font-weight: 600;
+      
+        }
+        h3 {
+          font-size: 40px;
+          font-weight: 500;
+      
+        }
+        h4 {
+          font-size: 32px;
+          font-weight: 400;
+      
+        }
+        h5 {
+          font-size: 21px;
+          font-weight: 300;
+      
+        }
+        h6 {
+          font-size: 14px;
+          font-weight: 200;
+      
+        }
+    </style>
+    <h1>This is h1 text</h1>
+    <h2>This is h2 text</h2>
+    <h3>This is h3 text</h3>
+    <h4>This is h4 text</h4>
+    <h5>This is h5 text</h5>
+    <h6>This is h6 text</h6> -->
+
+    <!-- 16.ESTABLECE EL TAMAÑO DE FUENTE DEL TEXTO DEL PÁRRAFO 
+    <style>
+        p {
+          font-size: 16px;
+        }
+    </style>
+    <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </p> -->
+
+    <!-- 17.ESTABLECE LA LINE-HEIGHT DE LOS PÁRRAFOS 
+    <style>
+        p {
+          font-size: 16px;
+          line-height: 25px;
+        }
+    </style>
+    <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </p> -->
+
+    <!-- 18.AJUSTA EL HOVER DE UNA ETIQUETA ANCHOR (PSEUDO-CLASE)
+    <style>
+        a {
+          color: #000;
+        }
+        a:hover {
+          color: blue;
+        }
+    </style>
+    <a href="https://freecatphotoapp.com/" target="_blank">CatPhotoApp</a> -->
+
+    <!-- 19.CAMBIA LA POSICIÓN RELATIVA DE UN ELEMENTO 
+    <style>
+        h2 {
+          position: relative;
+          top: 15px;
+        }
+    </style>
+    <body>
+    <h1>On Being Well-Positioned</h1>
+    <h2>Move me!</h2>
+    <p>I still think the h2 is where it normally sits.</p>
+    </body> -->
+
+    <!-- 20.MUEVE UN ELEMENTO POSICIONADO RELATIVAMENTE CON DESPLAZAMIENTOS DE CSS 
+    <head>
+        <style>
+          h2 {
+            position: relative;
+            left: 15px;
+            bottom: 10px;    
+          }
+    </style>
+    </head>
+    <body>
+        <h1>On Being Well-Positioned</h1>
+        <h2>Move me!</h2>
+        <p>I still think the h2 is where it normally sits.</p>
+    </body> -->
+
+    <!-- 21.BLOQUEA UN ELEMENTO CON RELACIÓN A SU PADRE CON EL POSICIONAMIENTO ABSOLUTO 
+    <style>
+        #searchbar {
+          position: absolute;
+          top: 50px;
+          right: 50px;
+        }
+        section {
+          position: relative;
+        }
+    </style>
+    <body>
+    <h1>Welcome!</h1>
+    <section>
+        <form id="searchbar">
+        <label for="search">Search:</label>
+        <input type="search" id="search" name="search">
+        <input type="submit" name="submit" value="Go!">
+        </form>
+    </section>
+    </body> -->
+
+    <!-- 22.BLOQUEA UN ELEMENTO A LA VENTANA DEL NAVEGADOR CON EL POSICIONAMIENTO FIJO ABSOLUTO 
+    <style>
+        body {
+          min-height: 150vh;
+        }
+        #navbar {
+          position: fixed;
+          top: 0px;
+          left: 0px;
+          width: 100%;
+          background-color: #767676;
+        }
+        nav ul {
+          margin: 0px;
+          padding: 5px 0px 5px 30px;
+        }
+        nav li {
+          display: inline;
+          margin-right: 20px;
+        }
+        a {
+          text-decoration: none;
+        }
+    </style>
+    <body>
+    <header>
+        <h1>Welcome!</h1>
+        <nav id="navbar">
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+        </nav>
+    </header>
+    <p>I shift up when the #navbar is fixed to the browser window.</p>
+    </body> -->
+
+    <!-- 23.EMPUJA ELEMENTOS HACIA LA IZQUIERDA O HACIA LA DERECHA CON LA PROPIEDAD FLOAT 
+    <head>
+        <style>
+          #left {
+            float: left;
+            width: 50%;
+          }
+          #right {
+            float: right;
+            width: 40%;
+          }
+          aside, section {
+            padding: 2px;
+            background-color: #ccc;
+          }
+    </style>
+    </head>
+    <body>
+    <header>
+        <h1>Welcome!</h1>
+    </header>
+    <section id="left">
+        <h2>Content</h2>
+        <p>Good stuff</p>
+    </section>
+    <aside id="right">
+        <h2>Sidebar</h2>
+        <p>Links</p>
+    </aside>
+    </body> -->
+
+    <!-- 24.CAMBIA LA POSICIÓN DE LOS ELEMENTOS SUPERPUESTOS CON LA PROPIEDAD Z-INDEX 
+    <style>
+      div {
+        width: 60%;
+        height: 200px;
+        margin-top: 20px;
+      }
+    
+      .first {
+        background-color: red;
+        position: absolute;
+        z-index: 2;
+      }
+      .second {
+        background-color: blue;
+        position: absolute;
+        left: 40px;
+        top: 50px;
+        z-index: 1;
+      }
+    </style>
+    
+    <div class="first"></div>
+    <div class="second"></div> -->
+
+    <!-- 25.CENTRA UN ELEMENTO HORIZONTALMENTE USANDO LA PROPIEDAD MARGIN 
+    <style>
+      div {
+        background-color: blue;
+        height: 100px;
+        width: 100px;
+        margin: auto;
+      }
+    </style>
+    <div></div> -->
+
+    <!-- 26.APRENDE SOBRE COLORES COMPLEMENTARIOS 
+    <style>
+      body {
+        background-color: #FFFFFF;
+      }
+      .blue {
+        background-color: #0000FF;
+      }
+      .yellow {
+        background-color: #FFFF00;
+      }
+      div {
+        display: inline-block;
+        height: 100px;
+        width: 100px;
+      }
+    </style>
+    <div class="blue"></div>
+    <div class="yellow"></div> -->
+
+    <!-- 27.APRENDE SOBRE COLORES TERCIARIOS 
+    <style>
+      body {
+        background-color: #FFFFFF;
+      }
+    
+      .orange {
+        background-color: #FF7F00;
+      }
+    
+      .cyan {
+        background-color: #00FFFF;
+      }
+    
+      .raspberry {
+        background-color:#FF007F;
+      }
+    
+      div {
+        height: 100px;
+        width: 100px;
+        margin-bottom: 5px;
+      }
+    </style>
+    
+    <div class="orange"></div>
+    <div class="cyan"></div>
+    <div class="raspberry"></div> -->
+
+    <!-- 28.ADJUSTAR LOS COLORES DE VARIOS ELEMENTOS PARA COLORES COMPLEMENTARIOS 
+    <style>
+      body {
+        background-color: white;
+      }
+      header {
+        background-color: #09A7A1;
+        color: white;
+        padding: 0.25em;
+      }
+      h2 {
+        color: #09A7A1;
+      }
+      button {
+        background-color: #FF790E;
+      }
+      footer {
+        background-color: #09A7A1;
+        color: white;
+        padding: 0.5em;
+      }
+    </style>
+    <header>
+      <h1>Cooking with FCC!</h1>
+    </header>
+    <main>
+      <article>
+        <h2>Machine Learning in the Kitchen</h2>
+        <p>Join this two day workshop that walks through how to implement cutting-edge snack-getting algorithms with a command line interface. Coding usually involves writing exact instructions, but sometimes you need your computer to execute flexible commands, like <code>fetch Pringles</code>.</p>
+        <button>Sign Up</button>
+      </article>
+      <article>
+        <h2>Bisection Vegetable Chopping</h2>
+        <p>This week-long retreat will level-up your coding ninja skills to actual ninja skills. No longer is the humble bisection search limited to sorted arrays or coding interview questions, applying its concepts in the kitchen will have you chopping carrots in O(log n) time before you know it.</p>
+        <button>Sign Up</button>
+      </article>
+    </main>
+    <br>
+    <footer>&copy; 2018 FCC Kitchen</footer> -->
+
+    <!-- 29.AJUSTA EL MATIZ DE UN COLOR 
+    <style>
+      body {
+        background-color: #FFFFFF;
+      }
+
+      .green {
+        background-color: hsl(120, 100%, 50%);
+      }
+
+      .cyan {
+        background-color: hsl(180, 100%, 50%);
+      }
+
+      .blue {
+        background-color: hsl(240, 100%, 50%);
+      }
+
+      div {
+        display: inline-block;
+        height: 100px;
+        width: 100px;
+      }
+    </style>
+
+    <div class="green"></div>
+    <div class="cyan"></div>
+    <div class="blue"></div> -->
+
+    <!-- 30.AJUSTA EL TONO DE UN COLOR 
+    <style>
+      header {
+        background-color: hsl(180, 90%, 35%);
+        color: #FFFFFF;
+      }
+    
+      nav {
+        background-color: hsl(180, 80%, 25%)
+      }
+    
+      h1 {
+        text-indent: 10px;
+        padding-top: 10px;
+      }
+    
+      nav ul {
+        margin: 0px;
+        padding: 5px 0px 5px 30px;
+      }
+    
+      nav li {
+        display: inline;
+        margin-right: 20px;
+      }
+    
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    </style>
+    
+    <header>
+      <h1>Cooking with FCC!</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Classes</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header> -->
+
+    <!-- 31.CREA UN GRADIENTE LINEAL DE CSS GRADUAL 
+    <style>
+      div {
+        border-radius: 20px;
+        width: 70%;
+        height: 400px;
+        margin: 50px auto;
+        background: linear-gradient(35deg, #CCFFFF, #FFCCCC);
+      }
+    
+    </style>
+    
+    <div></div> -->
+
+    <!-- 32.UTILIZA UN DEGRADADO LINEAL CSS PARA CREAR UN ELEMENTO RAYADO 
+    <style>
+
+      div{
+        border-radius: 20px;
+        width: 70%;
+        height: 400px;
+        margin:  50 auto;
+        background: repeating-linear-gradient(
+          45deg,
+          yellow 0px,
+          yellow 40px,
+          black 40px,
+          black 80px
+        );
+      }
+    
+    </style>
+    
+    <div></div> -->
+
+    <!-- 33.CREA TEXTURA AGREGANDO UN PATRÓN SUTIL COMO IMAGEN DE FONDO 
+    <style>
+      body {
+        background: url(https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png);
+      }
+    </style> -->
+
+    <!-- 34.UTILIZA LA PROPIEDAD DE ESCALA DE TRANSFORMACIÓN CSS PARA CAMBIAR EL TAMAÑO DE UN ELEMENTO
+    <style>
+      .ball {
+        width: 40px;
+        height: 40px;
+        margin: 50 auto;
+        position: fixed;
+        background: linear-gradient(
+          35deg,
+          #ccffff,
+          #ffcccc
+        );
+        border-radius: 50%;
+      }
+      #ball1 {
+        left: 20%;
+      }
+      #ball2 {
+        left: 65%;
+        transform: scale(1.5);
+      }
+    
+    
+    </style>
+    
+    <div class="ball" id= "ball1"></div>
+    <div class="ball" id= "ball2"></div>  -->
+
+    <!-- 35.UTILIZA LA PROPIEDAD DE ESCALA DE TRANSFORMACIÓN CSS PARA ESCALAR UN ELEMENTO AL DESPLAZARSE 
+    <style>
+      div {
+        width: 70%;
+        height: 100px;
+        margin:  50px auto;
+        background: linear-gradient(
+          53deg,
+          #ccfffc,
+          #ffcccf
+        );
+      }
+      div:hover {
+        transform: scale(1.1); 
+      }
+    
+    </style>
+    
+    <div></div> -->
+
+    <!-- 36.UTILIZA LA PROPIEDAD DE TRANSFORMACIÓN CSS SKEWX PARA INCLINAR UN ELEMENTO A LO LARGO DEL EJE X
+    <style>
+      div {
+        width: 70%;
+        height: 100px;
+        margin:  50px auto;
+      }
+      #top {
+        background-color: red;
+      }
+      #bottom {
+        background-color: blue;
+        transform: skewX(24deg);
+      }
+    </style>
+    
+    <div id="top"></div>
+    <div id="bottom"></div>  -->
+
+    <!-- 37.UTILIZA LA PROPIEDAD DE TRANSFORMACIÓN CSS SKEWY PARA INCLINAR UN ELEMENTO A LO LARGO DEL EJE Y 
+    <style>
+      div {
+        width: 70%;
+        height: 100px;
+        margin: 50px auto;
+      }
+      #top {
+        background-color: red;
+        transform: skewY(-10deg);
+      }
+      #bottom {
+        background-color: blue;
+        transform: skewX(24deg);
+      }
+    </style>
+    
+    <div id="top"></div>
+    <div id="bottom"></div> -->
+
+    <!-- 38.CREA UN GRÁFICO USANDO CSS 
+    <style>
+      .center {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        background-color: transparent;
+        border-radius: 50%;
+        box-shadow: 25px 10px 0px 0px blue;
+      }
+    
+    </style>
+    <div class="center"></div> -->
+
+    <!-- 39.CREA UNA FORMA MÁS COMPLEJA USANDO CSS Y HTML 
+    <style>
+      .heart {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: pink;
+        height: 50px;
+        width: 50px;
+        transform: rotate(-45deg) ;
+      }
+      .heart::after {
+        background-color: pink;
+        content: "";
+        border-radius: 50%;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 0px;
+        left: 25px;
+      }
+      .heart::before {
+        content: "";
+        background-color: pink;
+        border-radius: 50%;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: -25px;
+        left: 0px;
+      }
+    </style>
+    <div class="heart"></div> -->
+
+    <!-- 40.APRENDE COMO FUNCIONAN LAS PROPIEDADES DE CSS @KEYFRAMES Y ANIMACIÓN 
+    <style>
+      div {
+        height: 40px;
+        width: 70%;
+        background: black;
+        margin: 50px auto;
+        border-radius: 5px;
+      }
+    
+      #rect {
+        animation-name: rainbow;
+        animation-duration: 4s;
+      }
+      @keyframes rainbow {
+        0%{
+          background-color: blue; 
+        }
+        50% {
+          background-color: green;
+        }
+        100% {
+          background-color: yellow;
+        }
+      } -->
+
+      <!-- 41.USA ANIMACIÓN CSS PARA CAMBIAR EL ESTADO DEL DESPLAZAMIENTO DE UN BOTÓN
+      <style>
+        button {
+          border-radius: 5px;
+          color: white;
+          background-color: #0F5897;
+          padding: 5px 10px 8px 10px;
+        }
+      
+        button:hover {
+          animation-name: background-color;
+          animation-duration: 500ms;
+        }
+      
+        @keyframes background-color {
+          100% {
+            background-color: #4791d0;
+          }
+        }
+      
+      </style>
+      
+      <button>Register</button>  -->
+
+      <!-- 42.MODIFICA EL MODO DE RELLENO DE UNA ANIMACIÓN (ANIMATION-FILL-MODE) 
+      <style>
+        button {
+          border-radius: 5px;
+          color: white;
+          background-color: #0F5897;
+          padding: 5px 10px 8px 10px;
+        }
+        button:hover {
+          animation-name: background-color;
+          animation-duration: 500ms;
+          /* Cambia solo el código debajo de esta línea */
+          animation-fill-mode: forwards;
+          /* Cambia solo el código encima de esta línea */
+        }
+        @keyframes background-color {
+          100% {
+            background-color: #4791d0;
+          }
+        }
+      </style>
+      <button>Register</button> -->
+
+      <!-- 43.CREAR MOVIMIENTO USANDO ANIMACIÓN CSS 
+      <style>
+        div {
+          height: 40px;
+          width: 70%;
+          background: black;
+          margin: 50px auto;
+          border-radius: 5px;
+          position: relative;
+        }
+      
+        #rect {
+          animation-name: rainbow;
+          animation-duration: 4s;
+        }
+      
+        @keyframes rainbow {
+          0% {
+            background-color: blue;
+            top: 0px;
+            left: 0px;
+          }
+          50% {
+            background-color: green;
+            top: 50px;
+            left: 25px;
+          }
+          100% {
+            background-color: yellow;
+            top: 0px;
+            left: -25px;
+          }
+        }
+      </style>
+      
+      <div id="rect"></div> -->
+
+      <!-- 44.CREAR DIRECCIÓN VISUAL DESVANECIENDO UN ELEMENTO DE IZQUIERDA A DERECHA 
+      <style>
+
+        #ball {
+          width: 70px;
+          height: 70px;
+          margin: 50px auto;
+          position: fixed;
+          left: 20%;
+          border-radius: 50%;
+          background: linear-gradient(
+            35deg,
+            #ccffff,
+            #ffcccc
+          );
+          animation-name: fade;
+          animation-duration: 3s;
+        }
+      
+        @keyframes fade {
+          50% {
+            left: 60%;
+            opacity: 0.1;
+          }
+        }
+      
+      </style>
+      
+      <div id="ball"></div> -->
+
+      <!-- 45.ANIMAR LOS ELEMENTOS CONTINUAMENTE UTILIZANDO UN CONTADOR DE ANIMACIONES INFINITAS
+      <style>
+        #ball {
+          width: 100px;
+          height: 100px;
+          margin: 50px auto;
+          position: relative;
+          border-radius: 50%;
+          background: linear-gradient(
+            35deg,
+            #ccffff,
+            #ffcccc
+          );
+          animation-name: bounce;
+          animation-duration: 1s;
+          animation-iteration-count: infinite;
+        }
+      
+        @keyframes bounce{
+          0% {
+            top: 0px;
+          }
+          50% {
+            top: 249px;
+            width: 130px;
+            height: 70px;
+          }
+          100% {
+            top: 0px;
+          }
+        }
+      </style>
+      <div id="ball"></div> -->
+
+      <!-- 46.HAZ LATIR UN CORAZÓN CON CSS USANDO UN RECUENTO DE ANIMACIÓN INFINITA 
+      <style>
+        .back {
+          position: fixed;
+          padding: 0;
+          margin: 0;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: white;
+          animation-name: backdiv;
+          animation-duration: 1s;
+          animation-iteration-count: infinite;
+        }
+      
+        .heart {
+          position: absolute;
+          margin: auto;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-color: pink;
+          height: 50px;
+          width: 50px;
+          transform: rotate(-45deg);
+          animation-name: beat;
+          animation-duration: 1s;
+          animation-iteration-count: infinite;
+      
+        }
+        .heart:after {
+          background-color: pink;
+          content: "";
+          border-radius: 50%;
+          position: absolute;
+          width: 50px;
+          height: 50px;
+          top: 0px;
+          left: 25px;
+        }
+        .heart:before {
+          background-color: pink;
+          content: "";
+          border-radius: 50%;
+          position: absolute;
+          width: 50px;
+          height: 50px;
+          top: -25px;
+          left: 0px;
+        }
+      
+        @keyframes backdiv {
+          50% {
+            background: #ffe6f2;
+          }
+        }
+      
+        @keyframes beat {
+          0% {
+            transform: scale(1) rotate(-45deg);
+          }
+          50% {
+            transform: scale(0.6) rotate(-45deg);
+          }
+        }
+      
+      </style>
+      <div class="back"></div>
+      <div class="heart"></div> -->
+
+      <!-- 47.ELEMENTOS ANIMADOS CON FLUCTUACIONES 
+      <style>
+        .stars {
+          background-color: white;
+          height: 30px;
+          width: 30px;
+          border-radius: 50%;
+          animation-iteration-count: infinite;
+        }
+      
+        .star-1 {
+          margin-top: 15%;
+          margin-left: 60%;
+          animation-name: twinkle-1;
+          animation-duration: 1s;
+        }
+      
+        .star-2 {
+          margin-top: 25%;
+          margin-left: 25%;
+          animation-name: twinkle-2;
+          animation-duration: 1s;
+        }
+      
+        @keyframes twinkle-1 {
+          50% {
+            transform: scale(0.5);
+            opacity: 0.5;
+          }
+        }
+      
+        @keyframes twinkle-2 {
+          20% {
+            transform: scale(0.5);
+            opacity: 0.5;
+          }
+        }
+      
+        #back {
+          position: fixed;
+          padding: 0;
+          margin: 0;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(black, #000099, #66c2ff, #ffcccc, #ffeee6);
+        }
+      </style>
+      
+      <div id="back"></div>
+      <div class="star-1 stars"></div>
+      <div class="star-2 stars"></div> -->
+
+      <!-- 48.ANIMAR MÚLTIPLES ELEMENTOS CON RITMOS DIFERENTES 
+      <style>
+        .stars {
+          background-color: white;
+          height: 30px;
+          width: 30px;
+          border-radius: 50%;
+          animation-iteration-count: infinite;
+        }
+      
+        .star-1 {
+          margin-top: 15%;
+          margin-left: 60%;
+          animation-duration: 1s;
+          animation-name: twinkle;
+        }
+      
+        .star-2 {
+          margin-top: 25%;
+          margin-left: 25%;
+          animation-duration: 0.9s;
+          animation-name: twinkle;
+        }
+      
+        .star-3 {
+          margin-top: 10%;
+          margin-left: 50%;
+          animation-duration: 1.1s;
+          animation-name: twinkle;
+        }
+      
+        @keyframes twinkle {
+          20% {
+            transform: scale(0.5);
+            opacity: 0.5;
+          }
+        }
+      
+        #back {
+          position: fixed;
+          padding: 0;
+          margin: 0;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(black, #000099, #66c2ff, #ffcccc, #ffeee6);
+        }
+      </style>
+      
+      <div id="back"></div>
+      <div class="star-1 stars"></div>
+      <div class="star-2 stars"></div>
+      <div class="star-3 stars"></div> -->
+
+      <!-- 49.CAMBIA LA DURACIÓN DE LAS ANIMACIONES CON PALABRAS CLAVE 
+      <style>
+        .balls {
+          border-radius: 50%;
+          background: linear-gradient(
+            35deg,
+            #ccffff,
+            #ffcccc
+          );
+          position: fixed;
+          width: 50px;
+          height: 50px;
+          margin-top: 50px;
+          animation-name: bounce;
+          animation-duration: 2s;
+          animation-iteration-count: infinite;
+        }
+        #ball1 {
+          left:27%;
+          animation-timing-function: linear;
+        }
+        #ball2 {
+          left:56%;
+          animation-timing-function: ease-out;
+        }
+      
+        @keyframes bounce {
+          0% {
+            top: 0px;
+          }
+          100% {
+            top: 249px;
+          }
+        }
+      
+      </style>
+      
+      <div class="balls" id="ball1"></div>
+      <div class="balls" id="ball2"></div> -->
+
+      <!-- 50.DESCUBRE COMO FUNCIONAN LAS CURVAS DE BEZIER 
+      <style>
+
+        .balls{
+          border-radius: 50%;
+          background: linear-gradient(
+            35deg,
+            #ccffff,
+            #ffcccc
+          );
+          position: fixed;
+          width: 50px;
+          height: 50px;
+          margin-top: 50px;
+          animation-name: bounce;
+          animation-duration: 2s;
+          animation-iteration-count: infinite;
+        }
+        #ball1 {
+          left: 27%;
+          animation-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+        }
+        #ball2 {
+          left: 56%;
+          animation-timing-function: ease-out;
+        }
+      
+        @keyframes bounce {
+          0% {
+            top: 0px;
+          }
+          100% {
+            top: 249px;
+          }
+        }
+      
+      </style>
+      
+      <div class="balls" id="ball1"></div>
+      <div class="balls" id="ball2"></div> -->
+
+      <!-- 51.USA UNA CURVA DE BEZIER PARA MOVER UN GRÁFICO 
+      <style>
+        .balls{
+          border-radius: 50%;
+          position: fixed;
+          width: 50px;
+          height: 50px;
+          margin-top: 50px;
+          animation-name: bounce;
+          animation-duration: 2s;
+          animation-iteration-count: infinite;
+        }
+        #red {
+          background: red;
+          left: 27%;
+          animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+        }
+        #blue {
+          background: blue;
+          left: 56%;
+          animation-timing-function: ease-out;
+        }
+        @keyframes bounce {
+          0% {
+            top: 0px;
+          }
+          100% {
+            top: 249px;
+          }
+        }
+      </style>
+      <div class="balls" id= "red"></div>
+      <div class="balls" id= "blue"></div> -->
+
+      <!-- 52.HAZ QUE EL MOVIMIENTO SEA MÁS NATURAL USANDO UNA CURVA DE BEZIER 
+      <style>
+        .balls {
+          border-radius: 50%;
+          position: fixed;
+          width: 50px;
+          height: 50px;
+          top: 60%;
+          animation-name: jump;
+          animation-duration: 2s;
+          animation-iteration-count: infinite;
+        }
+        #red {
+          background: red;
+          left: 25%;
+          animation-timing-function: linear;
+        }
+        #blue {
+          background: blue;
+          left: 50%;
+          animation-timing-function: ease-out;
+        }
+        #green {
+          background: green;
+          left: 75%;
+          animation-timing-function: cubic-bezier(0.311, 0.441, 0.444, 1.649);
+        }
+      
+        @keyframes jump {
+          50% {
+            top: 10%;
+          }
+        }
+      </style>
+      <div class="balls" id="red"></div>
+      <div class="balls" id="blue"></div>
+      <div class="balls" id="green"></div> -->
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+</body>
+</html>

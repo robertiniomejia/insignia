@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principios de diseño web responsivo</title>
+</head>
+<body>
+
+    <!-- RESUMEN:
+    ------------------------
+    2.imagen responsiva
+    Hacer imágenes responsivas con CSS es realmente simple. Sólo tienes que agregar estas propiedades a una imagen:
+    img {
+        max-width: 100%;
+        height: auto;
+      }
+    ------------------------
+    3.imagen retina
+    La forma más sencilla de hacer que tus imágenes aparezcan correctamente en pantallas de alta resolución, tales como la "pantalla retina" de las MacBook Pros es definir sus valores de ancho width y de altura height como sólo la mitad de lo que es el archivo original.
+    <style>
+        img { height: 250px; width: 250px; }
+    </style>
+    <img src="coolPic500x500" alt="A most excellent picture">
+    ------------------------
+    4.texto responsivo 
+    En lugar de usar em o px para dimensionar texto, puedes usar unidades de viewport para obtener una tipografía responsiva. Las unidades de viewport, como los porcentajes, son unidades relativas, pero se basan en objetos diferentes. Las unidades de viewport son relativas a las dimensiones del viewport (ancho o alto) de un dispositivo, y los porcentajes son relativos al tamaño del elemento contenedor padre.
+
+    Las cuatro diferentes unidades de viewport son:
+
+    vw (viewport width): 10vw sería el 10% del ancho del viewport.
+    vh (viewport height): 3vh sería el 3% del alto del viewport.
+    vmin (viewport mínimo): 70vmin sería el 70% de la dimensión más pequeña del viewport (altura o ancho).
+    vmax (viewport máximo): 100vmax sería el 100% de la dimensión más grande del viewport (altura o ancho).
+    ------------------------
+    -->
+
+    <!-- 1.CREA UN MEDIA QUERY 
+    <style>
+        p {
+          font-size: 20px;
+        }
+      
+        /* Cambia solo el código debajo de esta línea */
+        @media (max-height:800px){
+          p {
+            font-size: 10px;
+          }
+        }
+        /* Cambia solo el código encima de esta línea */
+    </style>
+    
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis tempus massa. Aenean erat nisl, gravida vel vestibulum cursus, interdum sit amet lectus. Sed sit amet quam nibh. Suspendisse quis tincidunt nulla. In hac habitasse platea dictumst. Ut sit amet pretium nisl. Vivamus vel mi sem. Aenean sit amet consectetur sem. Suspendisse pretium, purus et gravida consequat, nunc ligula ultricies diam, at aliquet velit libero a dui.</p> -->
+
+    <!-- 2.HAZ UNA IMAGEN RESPONSIVA 
+    <style>
+        .responsive-img {
+          max-width: 100%;
+          height: auto;
+        }
+        
+        img {
+          width: 600px;
+        }
+    </style>
+        
+    <img class="responsive-img" src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg" alt="freeCodeCamp stickers set">
+    <img src="https://s3.amazonaws.com/freecodecamp/FCCStickerPack.jpg" alt="freeCodeCamp stickers set"> -->
+
+    <!-- 3.USA UNA IMAGEN RETINA PARA PANTALLAS DE ALTA RESOLUCIÓN 
+    <style>
+        img {
+          width: 100px;
+          height: 100px;
+        }
+      
+    </style>
+    
+    <img src="https://s3.amazonaws.com/freecodecamp/FCCStickers-CamperBot200x200.jpg" alt="freeCodeCamp sticker that says 'Because CamperBot Cares'"> -->
+
+    <!-- 4.HAZ TIPOGRAFÍA RESPONSIVA 
+    <style>
+        h2 {
+          width: 80vw;
+        }
+      
+        p {
+          width: 75vmin;
+        }
+    </style>
+    
+    <h2>Importantus Ipsum</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis tempus massa. Aenean erat nisl, gravida vel vestibulum cursus, interdum sit amet lectus. Sed sit amet quam nibh. Suspendisse quis tincidunt nulla. In hac habitasse platea dictumst. Ut sit amet pretium nisl. Vivamus vel mi sem. Aenean sit amet consectetur sem. Suspendisse pretium, purus et gravida consequat, nunc ligula ultricies diam, at aliquet velit libero a dui.</p> -->
+    
+
+    
+</body>
+</html>

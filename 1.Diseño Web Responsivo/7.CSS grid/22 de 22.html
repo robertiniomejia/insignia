@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea tu primera CSS Grid</title>
+</head>
+<body>
+    <!-- RESUMEN:
+    2.grid-template-columns (crea columnas)
+    El número de parámetros que se le da a la propiedad grid-template-columns indica el número de columnas en la cuadrícula y el valor de cada parámetro indica el ancho de cada columna.
+    Ejemplo:
+    .container {
+    display: grid;
+    grid-template-columns: 50px 50px;
+    }
+    ------------------
+    3.grid-template-rows (agrega filas de la misma forma de columns y sus valores son la cantidad y el alto de cada una)
+    ------------------
+    4.unidades de medida para ajustar las filas y las columnas.
+    Puedes usar unidades absolutas y relativas como px y em en CSS Grid para definir el tamaño de filas y columnas. Puedes usar estas también:
+
+    fr: fija la columna o fila a una fracción del espacio disponible,
+
+    auto: fija la columna o fila al ancho o alto de su contenido automáticamente,
+
+    %: ajusta la columna o fila al porcentaje de ancho de su contenedor.
+    Ejemplo:
+    grid-template-columns: auto 50px 10% 2fr 1fr;
+    ------------------
+    5.grid-column-gap (espacio entre columnas)
+    Ejemplo:
+    grid-column-gap: 10px;
+    ------------------
+    6.grid-row-gap (espacio entre filas)
+    Ejemplo:
+    grid-row-gap: 10px;
+    ------------------
+    7.grid-gap (solo necesita 2 valores para separar, primera filas, segundo columnas)
+    Ejemplo:
+    grid-gap: 10px 10px;
+    ------------------
+    8.grid-column (ubica los elementos en una cuadricula particular de columnas)
+    Ejemplo:
+    grid-column: 1 / 3; (comienza en la columna linea 1 y termina en la columna fila 3)
+    ------------------
+    9.grid-row (ubica un elemento en una cuadricula particular de filas)
+    Ejemplo:
+    grid-row: 2 / 4 (inicia en la fila linea 2 y termina en la fila linea 4)
+    ------------------
+    10.justify-self (alinea el elemento horizontalmente)
+    Puedes alinear la posición del contenido dentro de la celda horizontalmente usando la propiedad justify-self en un elemento grid. Por defecto, esta propiedad tiene valor de stretch, lo que hace que el contenido cubra todo el ancho de la celda. Esta propiedad de CSS Grid acepta otros valores también:
+
+    start: alinea el contenido hacia la izquierda de la celda,
+
+    center: alinea el contenido en el centro de la celda,
+
+    end: alinea el contenido hacia la derecha de la celda.
+    ------------------
+    11.align-self (alinea el elemento verticalmente)
+    Tiene los mismos valores que justify-self
+    ------------------
+    12.justify-items (alinea todos los elementos horizontalmente)
+    ------------------
+    Siguen manteniendo los mismos valores de "justify-self" y "align-self"
+    ------------------
+    13.align-items (alinea todos los elementos verticalmente)
+    Sigue manteniendo los valores de "justify-self" , "align-self" y "justify-items"
+    ------------------
+    14.grid-template-areas (agrupar las celdas y personalizar el nombre de las areas para luego seleccionarlas)
+    Puedes agrupar las celdas de tu cuadrícula en una área y darle a esa área un nombre personalizado. Haz esto usando grid-template-areas en el contenedor
+    Ejemplo:
+    grid-template-areas:
+    "header header header"
+    "advert content content"
+    "advert footer footer";
+    ------------------
+    15.grid-area (ubica elementos en áreas luego de usar "grid-template-areas")
+    Esto le dice a la cuadrícula que quieres que la clase item1 se ubique en el área llamada header. En este caso, el elemento usará la totalidad de la fila superior porque esa área se llama header.
+    Ejemplo:
+    .item1 {
+    grid-area: header;
+    }
+    ------------------
+    16. grid-area (sin usar "grid-template-areas" o plantilla de area refreencial)
+    Si tu cuadrícula (grid) no tiene plantillas de área de referencia, puedes crear un área para un elemento sobre la marcha para ubicar los elementos de la siguiente manera:
+
+    item1 { grid-area: 1/1/2/4; }
+    Esto usa los números de líneas aprendidos anteriormente para definir cuál será el área de ese elemento. Los números en el ejemplo anterior representan estos valores:
+
+    grid-area: horizontal line to start at / vertical line to start at / horizontal line to end at / vertical line to end at;
+    ------------------
+    17.repeat (funcion de "grid-template-columns" y "grid-template-rows")
+    Digamos que quieres una cuadrícula con 100 filas del mismo tamaño. No es muy práctico insertar 100 valores manualmente. Afortunadamente, hay una mejor manera - usando la función repeat para especificar el número de veces que quieres que tu columna o fila se repita, seguido de una coma y el valor que quieres repetir.
+
+    A continuación un ejemplo que crea una cuadrícula de 100 filas, cada fila con 50px de alto.
+
+    grid-template-rows: repeat(100, 50px);
+
+    También puedes repetir múltiples valores con la función repeat e insertar la función entre otros valores al definir una estructura de cuadrícula. Así se ve:
+
+    grid-template-columns: repeat(2, 1fr 50px) 20px;
+
+    Esto traduce a:
+
+    grid-template-columns: 1fr 50px 1fr 50px 20px;
+    ------------------
+    18.minmax (funcion de "grid-template-columns" y "grid-template-rows")
+    Se usa para limitar el tamaño de los elementos cuando el contenedor de la cuadrícula (grid) cambia de tamaño. Para hacer esto, necesitas especificar el rango de tamaño aceptable para tu elemento. A continuación un ejemplo:
+
+    grid-template-columns: 100px minmax(50px, 200px);
+    ------------------
+    19.auto-fill (opcion de la funcion repeat)
+    La función de repetición viene con una opción llamada auto-fill. Esto te permite insertar automáticamente tantas filas o columnas del tamaño deseado como sea posible, dependiendo del tamaño del contenedor. Puedes crear diseños flexibles al combinar auto-fill con minmax, así:
+
+    repeat(auto-fill, minmax(60px, 1fr));
+    ------------------
+    20.auto-fit (opcion de la funcion)
+    auto-fit funciona casi igual que auto-fill. La única diferencia es que cuando el tamaño del contenedor excede el tamaño de todos sus elementos combinados, auto-fill sigue insertando filas o columnas vacías y empuja los elementos hacia un lado, mientras que auto-fit colapsa esas filas o columnas y estira los elementos para que cubran el tamaño del contenedor.
+
+    Nota: si a tu contenedor no le caben todos los elementos en una fila, los moverá hacia abajo a una nueva fila.
+    ------------------
+    22.display (dentro de una caja o celda crea una cuadricula dentro de otra cuadricula contenedora) 
+    ------------------
+    -->
+
+
+
+
+    <!-- 1.CREA TU PRIMERA CSS GRID (las cajas tambien son conocidas como celdas)
+    <style>
+        .d1{background:LightSkyBlue;}
+        .d2{background:LightSalmon;}
+        .d3{background:PaleTurquoise;}
+        .d4{background:LightPink;}
+        .d5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          width: 100%;
+          background: LightGray;
+          /* Cambia solo el código debajo de esta línea */
+          display: grid;
+          /* Cambia solo el código encima de esta línea */
+        }
+    </style>
+    
+    <div class="container">
+    <div class="d1">1</div>
+    <div class="d2">2</div>
+    <div class="d3">3</div>
+    <div class="d4">4</div>
+    <div class="d5">5</div>
+    </div>  -->
+
+    <!-- 2.AGREGA COLUMNAS CON GRID-TEMPLATE-COLUMNS 
+    <style>
+        .d1{background:LightSkyBlue;}
+        .d2{background:LightSalmon;}
+        .d3{background:PaleTurquoise;}
+        .d4{background:LightPink;}
+        .d5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          /* Cambia solo el código debajo de esta línea
+      
+          grid-template-columns: 100px 100px 100px;
+          Cambia solo el código encima de esta línea */
+        }
+    </style>
+    
+    <div class="container">
+    <div class="d1">1</div>
+    <div class="d2">2</div>
+    <div class="d3">3</div>
+    <div class="d4">4</div>
+    <div class="d5">5</div>
+    </div> -->
+
+    <!-- 3.AGREGA FILAS CON GRID-TEMPLATE-ROWS 
+    <style>
+        .d1{background:LightSkyBlue;}
+        .d2{background:LightSalmon;}
+        .d3{background:PaleTurquoise;}
+        .d4{background:LightPink;}
+        .d5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 100px 100px 100px;
+          /* Cambia solo el código debajo de esta línea */
+      
+          grid-template-rows: 50px 50px;
+          /* Cambia solo el código encima de esta línea */
+        }
+    </style>
+    
+    <div class="container">
+    <div class="d1">1</div>
+    <div class="d2">2</div>
+    <div class="d3">3</div>
+    <div class="d4">4</div>
+    <div class="d5">5</div>
+    </div> -->
+
+    <!-- 4.USA UNIDADES CSS GRID PARA CAMBIAR EL TAMAÑO DE LAS COLUMNAS Y FILAS 
+    <style>
+        .d1{background:LightSkyBlue;}
+        .d2{background:LightSalmon;}
+        .d3{background:PaleTurquoise;}
+        .d4{background:LightPink;}
+        .d5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          /* Cambia solo el código debajo de esta línea */
+      
+          grid-template-columns: 1fr 100px 2fr;
+      
+          /* Cambia solo el código encima de esta línea */
+          grid-template-rows: 50px 50px;
+        }
+    </style>
+    
+    <div class="container">
+    <div class="d1">1</div>
+    <div class="d2">2</div>
+    <div class="d3">3</div>
+    <div class="d4">4</div>
+    <div class="d5">5</div>
+    </div> -->
+    
+    <!-- 5.CREA UN ESPACIO ENTRE COLUMNAS USANDO GRID-COLUMN-GAP 
+    <style>
+        .d1{background:LightSkyBlue;}
+        .d2{background:LightSalmon;}
+        .d3{background:PaleTurquoise;}
+        .d4{background:LightPink;}
+        .d5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          /* Cambia solo el código debajo de esta línea 
+          grid-column-gap: 20px;
+      
+          Cambia solo el código encima de esta línea */
+        }
+    </style>
+    
+    <div class="container">
+    <div class="d1">1</div>
+    <div class="d2">2</div>
+    <div class="d3">3</div>
+    <div class="d4">4</div>
+    <div class="d5">5</div>
+    </div> -->
+
+    <!-- 6.CREA UN ESPACIO ENTRE FILAS USANDO GRID-ROW-GAP
+    <style>
+        .d1{background:LightSkyBlue;}
+        .d2{background:LightSalmon;}
+        .d3{background:PaleTurquoise;}
+        .d4{background:LightPink;}
+        .d5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          /* Cambia solo el código debajo de esta línea 
+          grid-row-gap: 5px;
+      
+          Cambia solo el código encima de esta línea */
+        }
+    </style>
+    
+    <div class="container">
+    <div class="d1">1</div>
+    <div class="d2">2</div>
+    <div class="d3">3</div>
+    <div class="d4">4</div>
+    <div class="d5">5</div>
+    </div>  -->
+    
+    <!-- 7.AGREGA ESPACIOS MÁS RÁPIDO CON GRID-GAP 
+    <style>
+        .d1{background:LightSkyBlue;}
+        .d2{background:LightSalmon;}
+        .d3{background:PaleTurquoise;}
+        .d4{background:LightPink;}
+        .d5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          /* Cambia solo el código debajo de esta línea 
+          grid-gap: 10px 20px;
+      
+            Cambia solo el código encima de esta línea */
+        }
+    </style>
+    <div class="container">
+    <div class="d1">1</div>
+    <div class="d2">2</div>
+    <div class="d3">3</div>
+    <div class="d4">4</div>
+    <div class="d5">5</div>
+    </div> -->
+
+    <!-- 8.USA GRID-COLUMN PARA CONTROLAR ESPACIADO 
+    <style>
+        .item1{background:LightSkyBlue;}
+        .item2{background:LightSalmon;}
+        .item3{background:PaleTurquoise;}
+        .item4{background:LightPink;}
+      
+        .item5 {
+          background: PaleGreen;
+          /* Cambia solo el código debajo de esta línea */
+          grid-column: 2 / 4;
+      
+          /* Cambia solo el código encima de esta línea */
+        }
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+        }
+    </style>
+    
+    <div class="container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    </div> -->
+
+    <!-- 9.USA GRID-ROW PARA CONTROLAR ESPACIADO 
+    <style>
+        .item1{background:LightSkyBlue;}
+        .item2{background:LightSalmon;}
+        .item3{background:PaleTurquoise;}
+        .item4{background:LightPink;}
+      
+        .item5 {
+          background: PaleGreen;
+          grid-column: 2 / 4;
+          /* Cambia solo el código debajo de esta línea */
+          grid-row: 2 / 4;
+          /* Cambia solo el código encima de esta línea */
+        }
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+        }
+    </style>
+    
+    <div class="container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    </div> -->
+
+    <!-- 10.ALINEA UN ELEMENTO HORIZONTALMENTE USANDO JUSTIFY-SELF 
+    <style>
+        .item1{background: LightSkyBlue;}
+      
+        .item2 {
+          background: LightSalmon;
+          /* Cambia solo el código debajo de esta línea */
+          justify-self: center;  
+          
+          /* Cambia solo el código encima de esta línea */
+        }
+      
+        .item3{background:PaleTurquoise;}
+        .item4{background:LightPink;}
+        .item5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+        }
+    </style>
+    
+    <div class="container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    </div> -->
+
+    <!-- 11.ALINEA UN ELEMENTO VERTICALMENTE USANDO ALIGN-SELF 
+    <style>
+        .item1{background:LightSkyBlue;}
+        .item2{background:LightSalmon;}
+      
+        .item3 {
+          background: PaleTurquoise;
+          /* Cambia solo el código debajo de esta línea */
+          align-self: end;
+      
+          /* Cambia solo el código encima de esta línea */
+        }
+      
+        .item4{background:LightPink;}
+        .item5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+        }
+    </style>
+    
+    <div class="container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    </div> -->
+
+    <!-- 12.ALINEA TODOS LOS ELEMENTOS HORIZONTALMENTE USANDO JUSTIFY-ITEMS 
+    <style>
+        .item1{background:LightSkyBlue;}
+        .item2{background:LightSalmon;}
+        .item3{background:PaleTurquoise;}
+        .item4{background:LightPink;}
+        .item5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+          /* Cambia solo el código debajo de esta línea 
+          justify-items: center;
+      
+           Cambia solo el código encima de esta línea */
+        }
+    </style>
+    
+    <div class="container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    </div> -->
+
+    <!-- 13.ALINEA TODOS LOS ELEMENTOS VERTICALMENTE USANDO ALIGN-ITEMS
+    <style>
+        .item1{background:LightSkyBlue;}
+        .item2{background:LightSalmon;}
+        .item3{background:PaleTurquoise;}
+        .item4{background:LightPink;}
+        .item5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+          /* Cambia solo el código debajo de esta línea 
+          align-items: end;
+      
+           Cambia solo el código encima de esta línea */
+        }
+    </style>
+    
+    <div class="container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    </div>  -->
+ 
+    <!-- 14.DIVIDE LA CUADRÍCULA EN UNA PLANTILLA DE ÁREA 
+    <style>
+        .item1{background:LightSkyBlue;}
+        .item2{background:LightSalmon;}
+        .item3{background:PaleTurquoise;}
+        .item4{background:LightPink;}
+        .item5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+          grid-template-areas:
+          /* Cambia solo el código debajo de esta línea */
+            "header header header"
+            "advert content content"
+            "footer footer footer";
+          /* Cambia solo el código encima de esta línea */
+        }
+    </style>
+    
+    <div class="container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    </div> -->
+
+    <!-- 15.UBICA ELEMENTOS EN ÁREAS DE CUADRÍCULA USANDO LA PROPIEDAD GRID-AREA 
+    <style>
+        .item1{background:LightSkyBlue;}
+        .item2{background:LightSalmon;}
+        .item3{background:PaleTurquoise;}
+        .item4{background:LightPink;}
+      
+        .item5 {
+          background: PaleGreen;
+          /* Cambia solo el código debajo de esta línea 
+          grid-area: footer;
+      
+           Cambia solo el código encima de esta línea */
+        }
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+          grid-template-areas:
+            "header header header"
+            "advert content content"
+            "footer footer footer";
+        }
+    </style>
+    
+    <div class="container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    </div> -->
+
+    <!-- 16.USA GRID-AREA SIN CREAR PLANTILLAS DE ÁREA 
+    <style>
+        .item1{background:LightSkyBlue;}
+        .item2{background:LightSalmon;}
+        .item3{background:PaleTurquoise;}
+        .item4{background:LightPink;}
+      
+        .item5 {
+          background: PaleGreen;
+          /* Cambia solo el código debajo de esta línea 
+          grid-area: 3/1/4/4;
+      
+           Cambia solo el código encima de esta línea */
+        }
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+        }
+    </style>
+    
+    <div class="container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    </div> -->
+
+    <!-- 17.REDUCE REPETICIONES USANDO LA FUNCIÓN REPEAT
+    <style>
+        .item1{background:LightSkyBlue;}
+        .item2{background:LightSalmon;}
+        .item3{background:PaleTurquoise;}
+        .item4{background:LightPink;}
+        .item5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          /* Cambia solo el código debajo de esta línea */
+      
+          grid-template-columns: repeat(3, 1fr);
+      
+          /* Cambia solo el código encima de esta línea */
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+        }
+    </style>
+    
+    <div class="container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    </div>  -->
+
+    <!-- 18.LIMITA EL TAMAÑO DEL ELEMENTO USANDO LA FUNCIÓN MINMAX 
+    <style>
+        .item1{background:LightSkyBlue;}
+        .item2{background:LightSalmon;}
+        .item3{background:PaleTurquoise;}
+        .item4{background:LightPink;}
+        .item5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          /* Cambia solo el código debajo de esta línea 
+      
+          grid-template-columns: repeat(3,minmax(90px, 1fr));
+      
+            Cambia solo el código encima de esta línea */
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+        }
+    </style>
+    
+    <div class="container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    </div> -->
+
+    <!-- 19.CREA DISEÑOS FLEXIBLES USANDO AUTO-FILL 
+    <style>
+        .item1{background:LightSkyBlue;}
+        .item2{background:LightSalmon;}
+        .item3{background:PaleTurquoise;}
+        .item4{background:LightPink;}
+        .item5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          min-height: 100px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          /* Cambia solo el código debajo de esta línea 
+      
+          grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+      
+           Cambia solo el código encima de esta línea */
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+        }
+      
+        .container2 {
+          font-size: 40px;
+          min-height: 100px;
+          width: 100%;
+          background: Silver;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(60px, 1fr));
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+        }
+    </style>
+    <div class="container">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    </div>
+    <div class="container2">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    </div> -->
+
+    <!-- 20.CREA DISEÑOS FLEXIBLES USANDO AUTO-FIT 
+    <style>
+        .item1{background:LightSkyBlue;}
+        .item2{background:LightSalmon;}
+        .item3{background:PaleTurquoise;}
+        .item4{background:LightPink;}
+        .item5{background:PaleGreen;}
+      
+        .container {
+          font-size: 40px;
+          min-height: 100px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+        }
+      
+        .container2 {
+          font-size: 40px;
+          min-height: 100px;
+          width: 100%;
+          background: Silver;
+          display: grid;
+          /* Cambia solo el código debajo de esta línea */
+      
+          grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+      
+          /* Cambia solo el código encima de esta línea */
+          grid-template-rows: 1fr 1fr 1fr;
+          grid-gap: 10px;
+        }
+      </style>
+      
+      <div class="container">
+        <div class="item1">1</div>
+        <div class="item2">2</div>
+        <div class="item3">3</div>
+        <div class="item4">4</div>
+        <div class="item5">5</div>
+      </div>
+      <div class="container2">
+        <div class="item1">1</div>
+        <div class="item2">2</div>
+        <div class="item3">3</div>
+        <div class="item4">4</div>
+        <div class="item5">5</div>
+      </div> -->
+
+      <!-- 21.USA CONSULTAS DE MEDIOS (MEDIA QUERIES) PARA CREAR DISEÑOS RESPONSIVOS 
+      <style>
+        .item1 {
+          background: LightSkyBlue;
+          grid-area: header;
+        }
+      
+        .item2 {
+          background: LightSalmon;
+          grid-area: advert;
+        }
+      
+        .item3 {
+          background: PaleTurquoise;
+          grid-area: content;
+        }
+      
+        .item4 {
+          background: lightpink;
+          grid-area: footer;
+        }
+      
+        .container {
+          font-size: 1.5em;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: 50px auto 1fr auto;
+          grid-gap: 10px;
+          grid-template-areas:
+            "header"
+            "advert"
+            "content"
+            "footer";
+        }
+      
+        @media (min-width: 300px){
+          .container{
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+              "advert header"
+              "advert content"
+              "advert footer";
+          }
+        }
+      
+        @media (min-width: 400px){
+          .container{
+            grid-template-areas:
+            /* Cambia solo el código debajo de esta línea */
+              "header header"
+              "advert content"
+              "footer footer";
+            /* Cambia solo el código encima de esta línea */
+          }
+        }
+    </style>
+    
+    <div class="container">
+    <div class="item1">header</div>
+    <div class="item2">advert</div>
+    <div class="item3">content</div>
+    <div class="item4">footer</div>
+    </div> -->
+
+    <!-- 22.CREA CUADRÍCULAS (GRIDS) DENTRO DE CUADRÍCULAS 
+    <style>
+        .container {
+          font-size: 1.5em;
+          min-height: 300px;
+          width: 100%;
+          background: LightGray;
+          display: grid;
+          grid-template-columns: auto 1fr;
+          grid-template-rows: auto 1fr auto;
+          grid-gap: 10px;
+          grid-template-areas:
+            "advert header"
+            "advert content"
+            "advert footer";
+        }
+        .item1 {
+          background: LightSkyBlue;
+          grid-area: header;
+        }
+      
+        .item2 {
+          background: LightSalmon;
+          grid-area: advert;
+        }
+      
+        .item3 {
+          background: PaleTurquoise;
+          grid-area: content;
+          /* Cambia solo el código debajo de esta línea 
+          display: grid;
+          grid-template-columns: auto 1fr;
+      
+           Cambia solo el código encima de esta línea */
+        }
+      
+        .item4 {
+          background: lightpink;
+          grid-area: footer;
+        }
+      
+        .itemOne {
+          background: PaleGreen;
+        }
+      
+        .itemTwo {
+          background: BlanchedAlmond;
+        }
+      
+    </style>
+    
+    <div class="container">
+    <div class="item1">header</div>
+    <div class="item2">advert</div>
+    <div class="item3">
+        <div class="itemOne">paragraph1</div>
+        <div class="itemTwo">paragraph2</div>
+    </div>
+    <div class="item4">footer</div>
+    </div> -->
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
